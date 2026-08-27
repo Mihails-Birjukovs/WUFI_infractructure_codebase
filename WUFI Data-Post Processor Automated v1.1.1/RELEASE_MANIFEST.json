@@ -1,0 +1,31 @@
+{
+  "release": "Production v1.1.1",
+  "version_string": "Production-1.1.1-2026-08-12",
+  "release_date": "2026-08-12",
+  "production_default_graphics_kernels": 8,
+  "validated_high_throughput_graphics_kernels": 12,
+  "unsupported_reference_result": "16-kernel run stalled in first case and failed to create some graphics",
+  "core_files": [
+    "WUFIDataPostProcessor_v1_1_1.wl",
+    "WUFIDataPostProcessorConfig_v1_1_1.wl",
+    "WUFIDataPostProcessor_v1_1_1_SmokeTests.wl",
+    "WUFIDataPostProcessor_v1_1_1_GraphicsStressTests.wl",
+    "WUFIModelMetadata.wl",
+    "WUFI Data Post-Processor Automated v1.1.1.nb"
+  ],
+  "static_audit_pass": true,
+  "runtime_validation": {
+    "smoke_tests": "14/14 passed",
+    "repeated_full_runs": 3,
+    "graphics_kernel_count": 8,
+    "cases_per_run": 5,
+    "wxf_per_run": 25,
+    "jpg_per_run": 265,
+    "failed_cases_total": 0,
+    "image_failures_total": 0,
+    "wxf_byte_identical_across_runs": "25/25",
+    "jpeg_payload_identical_after_app_com_metadata_strip_across_runs": "265/265",
+    "mean_sum_case_time_seconds": 420.748821,
+    "run_to_run_cv_percent": 1.041174
+  }
+}
