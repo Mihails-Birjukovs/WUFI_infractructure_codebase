@@ -37,7 +37,7 @@ def test_wac_gap_infill_and_header(tmp_path):
 
 def test_reject_dst_jump():
     f = _frame()
-    f.loc[20, "TIME"] += pd.Timedelta(hours=1)
+    f.loc[20:, "TIME"] = f.loc[20:, "TIME"] + pd.Timedelta(hours=1)
     with pytest.raises(ValueError, match="continuous hourly"):
         validate_audit(f)
 
