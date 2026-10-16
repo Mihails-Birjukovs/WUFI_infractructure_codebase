@@ -38,9 +38,12 @@ unless sharing is cleared. A checksum match is an integrity check,
 | Historical Phase-4 Butterworth main 60/60 nonlag metric rows | Independently regenerated from raw sensor and WUFI WXF, max absolute RMSE difference 4.31e-9 |
 | Historical Phase-4 RH cutoff robustness 135/135 rows | Independently regenerated, max absolute RMSE difference 2.19e-7 |
 | Historical multiscale main best-lag fields | **60/60 best lags exactly reproduced**, correlations within 3.95e-10 |
-| Phase-4 outdoor-pv-only DMDc W2 HEMP27/HEMP19 gains and peak lags | Agreement to displayed precision for 12/24/48 h with specified exploratory joint ridge |
-| Phase-4 DMDc W1 and REF controls | Not fully equivalent; exact lost original ridge/QA decisions unresolved |
-| Historical HODMD daily oscillatory mode | Recovered qualitatively, archive rank/delay stability fractions not reproduced |
+| Phase-4 DMDc 90 forcing-set robustness rows | **Numerically reproduced, all 180 experiment/WUFI peak lags exact**, max peak-gain ratio error 0.003463 |
+| Phase-4 DMDc 40 spectral-memory rows | **Numerically reproduced**, max spectral-radius error 8.31e-6 and max memory ratio error 0.000292 |
+| Phase-4 DMDc 960 six-input impulse rows | **Numerically reproduced, all 960 peak lags exact**, max individual peak-gain error 1.99e-5 |
+| Original Phase-4 DMDc transient source code | Not recovered; ridge grid and fit policy inferred numerically from independent original-data benchmarks |
+| Historical HODMD daily oscillatory mode | Recovered qualitatively; archived 112-row rank/delay stability fractions **not** reproduced |
+| Independent 480-fit paper-style HODMD cross-check | Median period mismatch 0.392 h at 24-h trim; **not** historic numerical equivalence |
 | Wolfram 15/Linux cloud postprocessor smoke | 13/14 pass; only fresh-kernel graphics test failed; no launchable subkernels |
 | Definitive Mathematica 12.1/Windows + WUFI Pro 6.5 | **Blocked** until authorized connected workstation |
 
@@ -61,8 +64,8 @@ Historical hourly WXF, CSV and WAC sources are not published here.
 This repository must not be labelled historically equivalent or
 publication-grade solely because its synthetic GitHub Actions tests pass.
 A publication release or tag should follow independently approved WAC
-solar source interpretation and full pvlib replay, complete modal
-historical equivalence (or explicit limitation disclosure), and
+solar source interpretation and full pvlib replay, historical HODMD
+equivalence (or explicit limitation disclosure), and
 WUFI/Mathematica production-platform acceptance. Record the Git SHA,
 dependency versions and private input checksums before any release.
 

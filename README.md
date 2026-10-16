@@ -52,6 +52,8 @@ python -m python_tools.examples.run_modal_example --out-dir demo_outputs
 - [Full 60-row/135-row multiscale replay](docs/PHASE4_FULL_REPLAY.md)
 - [Meteorological WXF reconstruction](docs/METEO_WXF_REPLAY.md)
 - [Phase-4 DMDc source-level replay](docs/DMDc_FULL_REPLAY.md)
+- [Complete 90+40+960 archival DMDc numerical reproduction](docs/DMDc_COMPLETE_NUMERICAL_REPRODUCTION.md)
+- [Analytic forward/backward HODMD 480-fit sensitivity](docs/HODMD_PAPERSTYLE_NUMERICAL_COMPARISON.md)
 - [HODMD independent daily-mode check](docs/HODMD_REFHEMP_REPLAY.md)
 - [Scientific input SHA-256 manifests and release gates](docs/SCIENTIFIC_RELEASE_GATES.md)
 
@@ -61,7 +63,7 @@ The production Wolfram Launcher v1.0, WUFI ASC Post-Processor v1.1.1 and WUFI Se
 
 ## Data, licensing and release status
 
-Python 3.10+ is recommended. WUFI Pro, Mathematica, project-specific weather audits, sensor measurements and simulation outputs are separate licensed/private inputs; they are not supplied here. Synthetic Python CI is passing on 3.11–3.13. Archived Phase-4 multiscale nonlag metrics have been independently reproduced from original data; strict full-data pvlib replay, complete historical modal equivalence, and WUFI application-level import remain open before a publication-grade release. See [LICENSE](LICENSE).
+Python 3.10+ is recommended. WUFI Pro, Mathematica, project-specific weather audits, sensor measurements and simulation outputs are separate licensed/private inputs; they are not supplied here. Synthetic Python CI is passing on 3.11–3.13. Archived Phase-4 multiscale metrics including best-lag selections and DMDc 90-row input-set, 40-row spectral-memory and 960-row impulse-response results are independently reproduced to high numerical precision from original WXF. Strict full-data pvlib replay, historical HODMD mode/stability equivalence, and licensed WUFI application-level import remain open before a publication-grade release. See [LICENSE](LICENSE).
 
 ### Historical WAC baseline comparison
 
