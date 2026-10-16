@@ -89,3 +89,19 @@ private full-spectrum reference delay-DMD extraction and
 policy comparisons. It must not be labelled archival HODMD acceptance
 until the operator and selected-mode statistics reproduce the frozen
 source records on independent systems. See \`docs/HODMD_RULE_RECOVERY.md\`.
+
+
+## Independent source-WXF HODMD spectral analysis (17 October 2026)
+
+A private rerun over 468 two-channel admissible delay/rank fits
+(HEMP27, HEMP19, REF118 × W1/W2 × experiment/WUFI) extracted 2,654
+positive-frequency eigenmodes. A retrospectively identified
+multiplicative factor-1.3 period gate plus nearest-log-period selection
+reproduces **67/84 original accepted-fit counts** exactly. Median period
+and growth match archive within 1e-7 in 70/84 and 67/84 groups.
+An inferred sample-SD scaling correction matches amplitude and both
+loading medians within 1e-8 in 65/84 groups. The 17 count mismatches
+lie at 12/24/48-hour targets. **Original HODMD complete parity remains
+OPEN**; 28 HEMP_PRIMARY six-state source combinations are untested.
+See `docs/HODMD_PRIVATE_SPECTRAL_REPLAY.md`. The validated DMDc engine
+and normalization are not modified by this diagnostic.
