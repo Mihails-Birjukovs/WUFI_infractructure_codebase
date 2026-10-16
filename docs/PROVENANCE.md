@@ -42,3 +42,7 @@ The Appendix I.1 retained reconstruction listing's horizon-gap policy still requ
 ## Supplemental Butterworth reconstruction
 
 `multiscale_butterworth.py` is a **new implementation of the archived Phase-4 method class** specified in `analysis_method.json`; it is not the original temporary script. Unit tests check segmentation, edge trim, band reconstruction and self-comparison. Historical numerical equivalence remains pending.
+
+### Near-horizon gap reconstruction refinement
+
+The module explicitly uses the same minimum cosine in *both* clearness-index calculation and its inverse transformation back to GHI. The report's compact WAC source listing describes the inverse as using unclamped positive `cos(zenith)`; that can understate irradiance for near-horizon daylight gaps. Independent numerical analysis of the 17,520-row archived audit indicates only three daylight gap samples are affected materially. A reconstruction using consistent clamping approaches the archived reference within roughly 0.22 W/m² at those gaps, versus about 5.6 W/m² without consistent clamping. **These are method-analysis comparisons, not an exact runtime pass by the committed `pvlib` module against the full private audit.**

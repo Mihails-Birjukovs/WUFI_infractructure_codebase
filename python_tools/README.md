@@ -84,3 +84,5 @@ metrics = butterworth_band_metrics(sensor, model,
 ```
 
 The exact archived source and independent paired-series data-preparation are still required for historical numerical equivalence; two Butterworth implementations may differ in boundary and QC choices.
+
+**Horizon-consistency detail:** internal daytime missing-hour GHI is rebuilt by interpolating clearness index and multiplying by extraterrestrial horizontal irradiance with the **same `min_cos_zenith=0.065` denominator** as `pvlib.irradiance.clearness_index`. This corrects a near-horizon inconsistency in the compact report listing. Astronomical-night hours are still assigned zero. This is an identified methodological refinement, not a claim of byte-identical historical reconstruction.

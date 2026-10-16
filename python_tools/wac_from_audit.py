@@ -132,7 +132,11 @@ def reconstruct_from_audit(
     zenith = noaa_solar_zenith(midpoint, latitude_deg, longitude_deg, timezone_hours)
     cos_z = np.cos(np.deg2rad(zenith))
     dni_extra = np.asarray(pvlib.irradiance.get_extra_radiation(midpoint.dayofyear), dtype=float)
-    horizontal_extra = dni_extra * np.maximum(cos_z, 0.0)
+    # Re-invert clearness_index with the *same* min-cosine denominator used
+    # by pvlib's clearness_index. Using raw cos(z) at near-horizon daylight
+    # incorrectly halves reconstructed irradiance when cos(z) < 0.065.
+    # Astronomical night is zeroed separately below, not reconstructed.
+    horizontal_extra = dni_extra * np.maximum(cos_z, MIN_COS_ZENITH)
     available = f["source_available"].to_numpy(dtype=bool)
     source_ghi = f["source_GHI"].to_numpy(dtype=float)
     measured_indices = np.flatnonzero(available)
