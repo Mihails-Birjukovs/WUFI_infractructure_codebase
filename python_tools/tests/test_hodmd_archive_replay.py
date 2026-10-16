@@ -10,7 +10,7 @@ from python_tools.hodmd_archive_replay import (
 def test_multiplicative_gate_vs_additive_gate():
     key={"system":"HEMP27","window":"W1","source":"exp","delay_h":12,"rank":4}
     modes=pd.DataFrame([
-        {**key,"mode_id":0,"period_h":24./1.28,"growth_per_h":-.01,
+        {**key,"mode_id":0,"period_h":24.*1.28,"growth_per_h":-.01,
          "amplitude":1.,"loading_0":.8,"loading_1":.6},
         {**key,"mode_id":1,"period_h":24.8,"growth_per_h":-.001,
          "amplitude":.5,"loading_0":.3,"loading_1":.4},
