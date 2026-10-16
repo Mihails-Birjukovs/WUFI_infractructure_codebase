@@ -139,3 +139,19 @@ def test_480_fit_paperstyle_coverage_and_log_eigenvalue_identity():
     assert report["coverage"]["HEMP27"]["growth_rows"]==96
     assert report["coverage"]["HEMP18"]["growth_rows"]==0
     assert report["growth_is_log_eigenvalue_modulus_to_max_absolute_error"]<1e-12
+
+
+
+def test_growth_sign_can_be_evaluated_without_claiming_historical_rule():
+    x = _mode_catalog()
+    selected = summarize_candidate_spectra(
+        x, target=24., require_nonpositive_growth=True)
+    assert selected.iloc[0].mode_id == "b"
+    x.loc[x.mode_id=="b","growth_per_h"] = .003
+    y = summarize_candidate_spectra(
+        x, target=24., require_nonpositive_growth=True)
+    assert y.iloc[0].mode_id == "a"
+    x.loc[x.mode_id=="a","growth_per_h"] = .001
+    z = summarize_candidate_spectra(
+        x, target=24., require_nonpositive_growth=True)
+    assert z.empty

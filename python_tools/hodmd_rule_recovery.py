@@ -115,6 +115,10 @@ def archived_stability_constraints(archive: pd.DataFrame) -> dict:
             int(outside_25.sum()),
         "quantile_rows_incompatible_with_30pct_window":
             int(outside_30.sum()),
+        "median_growth_negative": (
+            int((pd.to_numeric(archive["growth_median_per_h"]).to_numpy(float) < 0).sum())
+            if "growth_median_per_h" in archive else None
+        ),
         "window_inference_caution": (
             "A >28% halfwindow is necessary if accepted modes obey a hard "
             "symmetric interval; quantiles are insufficient to determine "
@@ -159,6 +163,10 @@ def paperstyle_coverage(archive: pd.DataFrame) -> dict:
         "growth_is_log_eigenvalue_modulus_to_max_absolute_error":
             growth_log_maxerr,
         "coverage": coverage,
+        "positive_growth_fits_with_growth_available":
+            int((growth.loc[mask] > 0).sum()),
+        "negative_growth_fits_with_growth_available":
+            int((growth.loc[mask] < 0).sum()),
         "distinct_archive_from_stability_summary": True,
     }
 
@@ -166,7 +174,8 @@ def paperstyle_coverage(archive: pd.DataFrame) -> dict:
 def summarize_candidate_spectra(modes: pd.DataFrame, *, target: float,
         relative_halfwidth: float = .30, selection: str = "nearest_period",
         max_abs_growth: float | None = None,
-        min_amplitude: float | None = None) -> pd.DataFrame:
+        min_amplitude: float | None = None,
+        require_nonpositive_growth: bool = False) -> pd.DataFrame:
     """Select AT MOST ONE candidate mode per fit, without archive fitting.
 
     CSV contract: FIT_KEYS, mode_id, period_h, growth_per_h, amplitude.
@@ -191,6 +200,8 @@ def summarize_candidate_spectra(modes: pd.DataFrame, *, target: float,
         if max_abs_growth <= 0:
             raise ValueError("Growth cutoff must be positive")
         valid &= x["growth_per_h"].abs() <= max_abs_growth
+    if require_nonpositive_growth:
+        valid &= x["growth_per_h"] <= 0
     if min_amplitude is not None:
         if min_amplitude < 0:
             raise ValueError("Amplitude cutoff must be nonnegative")
@@ -242,6 +253,8 @@ def main() -> None:
                    default="nearest_period")
     p.add_argument("--max-abs-growth",type=float)
     p.add_argument("--min-amplitude",type=float)
+    p.add_argument("--require-nonpositive-growth", action="store_true",
+                   help="Candidate decay/stability hypothesis; not recovered source")
     args = p.parse_args()
     stable = pd.read_csv(args.stability_summary)
     paper = pd.read_csv(args.paperstyle_crosscheck)
@@ -259,6 +272,7 @@ def main() -> None:
             selection=args.selection,
             max_abs_growth=args.max_abs_growth,
             min_amplitude=args.min_amplitude,
+            require_nonpositive_growth=args.require_nonpositive_growth,
         )
         if args.valid_fits:
             status = pd.read_csv(args.valid_fits)
@@ -279,6 +293,7 @@ def main() -> None:
             "selection":args.selection,
             "max_abs_growth":args.max_abs_growth,
             "min_amplitude":args.min_amplitude,
+            "require_nonpositive_growth":args.require_nonpositive_growth,
             "compared_groups":int(len(comparison)),
             "count_mae":float(np.mean(np.abs(
                 comparison["nfits_found_candidate"]-

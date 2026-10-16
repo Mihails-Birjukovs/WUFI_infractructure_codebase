@@ -138,3 +138,21 @@ paper-style complex analytic forward/backward operator, has different
 modes and amplitudes. Any apparent rule fit is conditional on matching
 the original spectral generation method. Do not export the private
 per-mode catalog into public GitHub.
+
+
+## Growth-rate sign audit (17 October 2026)
+
+Every one of the **112** archived original stability-summary rows has
+\`growth_median_per_h < 0\`. This does **not** imply that every accepted
+mode decayed; it only constrains the selected-modes' group medians.
+By contrast, in the separate *paper-style* 480-fit archive,
+\`growth_per_h\` is populated in **288** rows; **263** of these are
+positive and **25** negative, and \`growth_per_h = log(eig_abs)\` exactly
+to floating-point precision.
+
+This discrepancy strongly reinforces the need to treat the original
+stability extraction and the paper-style analysis as distinct operator
+and/or mode-selection procedures, rather than substituting one archive
+for the other. \`--require-nonpositive-growth\` is now an explicit
+**hypothesis test** in the candidate-rule CLI; it is NOT asserted as
+the historical filtering rule.
