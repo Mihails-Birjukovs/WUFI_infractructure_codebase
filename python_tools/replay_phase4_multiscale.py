@@ -43,8 +43,10 @@ def centered_hourly_medians(raw: pd.DataFrame, utc_hours: pd.DatetimeIndex) -> p
     """Raw ±30-minute medians, WITHOUT additional Production-v1.2 QC policy."""
     if not raw.index.is_monotonic_increasing or raw.index.tz is not None:
         raise ValueError("Expected sorted UTC-naive raw measurements")
-    times = raw.index.values.astype("datetime64[ns]").view("i8")
-    centers = utc_hours.asi8
+    # Force BOTH indexes to nanoseconds: pandas 3 may store datetime64[us],
+    # whose raw .asi8 would otherwise be 1000x smaller.
+    times = raw.index.to_numpy(dtype="datetime64[ns]").view("i8")
+    centers = utc_hours.to_numpy(dtype="datetime64[ns]").view("i8")
     radius = 30 * 60 * 1_000_000_000
     left = np.searchsorted(times, centers-radius, side="left")
     right = np.searchsorted(times, centers+radius, side="right")
