@@ -20,7 +20,7 @@ def test_signed_absolute_correlation_and_lag_selection():
     corr, lag = best_lag_correlation(x, y)
     assert lag == 2
     assert corr == pytest.approx(-1., abs=1e-14)
-    summary = metrics(x, y)
+    summary = metrics(x, y, compute_lag=True)
     assert summary["best_lag_h"] == lag
     assert summary["best_lag_corr"] == pytest.approx(corr)
 
