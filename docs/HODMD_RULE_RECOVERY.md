@@ -177,3 +177,18 @@ aggregate outcomes have already been examined. Also, matching accepted
 counts without matching period/amp/growth/loadings does NOT establish
 source-code identity. It is designed to reject implausible rules
 systematically, not to select a release-ready HODMD implementation.
+
+
+## Distinct 32-row feasibility archive
+
+\`hodmd_24h_feasibility.csv\` has **32 rows**, comprising
+four sensors (HEMP27, HEMP42, HEMP18, REF118),
+two blocks, and four delays (24/36/48/72).
+Its **32/32 growth rates are negative**. It contains a
+\`wufi_sensor_loading_ratio\` and \`sensor_contribution\` field,
+which suggest different state constructions and mode loadings than the
+two-channel target-stability inventory.
+
+It is a third scientific cross-check, **not** the original 39/40 scan
+and not the 480 paper-style fits. Do not merge its mode records into
+the original acceptance counts.

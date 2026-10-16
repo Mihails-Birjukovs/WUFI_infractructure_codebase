@@ -71,3 +71,21 @@ dependency versions and private input checksums before any release.
 
 See \`docs/WAC_FULL_REPLAY.md\`, \`docs/PHASE4_FULL_REPLAY.md\`,
 \`docs/DMDc_FULL_REPLAY.md\`, and \`docs/HODMD_REFHEMP_REPLAY.md\`.
+
+
+## HODMD rule-forensics update (17 October 2026)
+
+Full original HODMD numerical equivalence is still **open**, despite
+reproduced DMDc and multiscale benchmarks. The independent archive audit
+shows 39 two-channel fits vs 40 six-channel fits and quantile bounds
+requiring a symmetric hard target-period halfwindow of at least 28.31%.
+The strict rank < (delay × state channels) and ±30%-period rules are
+**candidate explanations** only. Original mode ranking, stability gates,
+and complete source are not recovered.
+
+The repository now includes \`python_tools.hodmd_mode_catalog\` for
+private full-spectrum reference delay-DMD extraction and
+\`python_tools.hodmd_rule_recovery\` for explicit independent candidate
+policy comparisons. It must not be labelled archival HODMD acceptance
+until the operator and selected-mode statistics reproduce the frozen
+source records on independent systems. See \`docs/HODMD_RULE_RECOVERY.md\`.
