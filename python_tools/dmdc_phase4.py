@@ -66,13 +66,13 @@ def joint_ridge(exp_x, model_x, u, p=12, grid=(0., 1e-8, 1e-6, 1e-4, 1e-2),
         models, errors = [], []
         for z, ctrl, y in cases:
             X = np.hstack([z, ctrl])
-            a, b = (np.linalg.lstsq(
-                np.vstack((X[:ntrain], np.sqrt(ridge)*np.eye(X.shape[1]))),
-                np.vstack((y[:ntrain], np.zeros((X.shape[1],y.shape[1])))),
-                rcond=None)[0] if ridge else
-                np.linalg.lstsq(X[:ntrain], y[:ntrain], rcond=None)[0])
-            # a is actually the full coefficients; b is residuals from lstsq
-            coef = a
+            if ridge:
+                coef = np.linalg.lstsq(
+                    np.vstack((X[:ntrain], np.sqrt(ridge)*np.eye(X.shape[1]))),
+                    np.vstack((y[:ntrain], np.zeros((X.shape[1],y.shape[1])))),
+                    rcond=None)[0]
+            else:
+                coef = np.linalg.lstsq(X[:ntrain], y[:ntrain], rcond=None)[0]
             errors.append(float(np.mean((X[ntrain:]@coef - y[ntrain:])**2)))
             models.append((coef[:z.shape[1]].T, coef[z.shape[1]:].T))
         candidates.append((sum(errors), ridge, errors, models))
