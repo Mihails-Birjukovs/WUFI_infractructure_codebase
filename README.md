@@ -47,6 +47,13 @@ python -m python_tools.examples.run_modal_example --out-dir demo_outputs
 - [Research provenance and limitations](docs/PROVENANCE.md)
 - [Two-branch contribution policy](docs/BRANCHING.md)
 - [Python module API instructions](python_tools/README.md)
+- [Historical WAC full-replay CLI and limitations](docs/WAC_FULL_REPLAY.md)
+- [Phase-4 WXF reader and paired-series reconstruction](docs/WXF_PHASE4_REPLAY.md)
+- [Full 60-row/135-row multiscale replay](docs/PHASE4_FULL_REPLAY.md)
+- [Meteorological WXF reconstruction](docs/METEO_WXF_REPLAY.md)
+- [Phase-4 DMDc source-level replay](docs/DMDc_FULL_REPLAY.md)
+- [HODMD independent daily-mode check](docs/HODMD_REFHEMP_REPLAY.md)
+- [Scientific input SHA-256 manifests and release gates](docs/SCIENTIFIC_RELEASE_GATES.md)
 
 ### Relationship to Mathematica
 
@@ -54,7 +61,7 @@ The production Wolfram Launcher v1.0, WUFI ASC Post-Processor v1.1.1 and WUFI Se
 
 ## Data, licensing and release status
 
-Python 3.10+ is recommended. WUFI Pro, Mathematica, project-specific weather audits, sensor measurements and simulation outputs are separate licensed/private inputs; they are not supplied here. Synthetic Python CI is passing on 3.11–3.13. Historical-data numerical equivalence and end-to-end WUFI import still require separate verification before a publication-grade release. See [LICENSE](LICENSE).
+Python 3.10+ is recommended. WUFI Pro, Mathematica, project-specific weather audits, sensor measurements and simulation outputs are separate licensed/private inputs; they are not supplied here. Synthetic Python CI is passing on 3.11–3.13. Archived Phase-4 multiscale nonlag metrics have been independently reproduced from original data; strict full-data pvlib replay, complete historical modal equivalence, and WUFI application-level import remain open before a publication-grade release. See [LICENSE](LICENSE).
 
 ### Historical WAC baseline comparison
 
