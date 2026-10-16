@@ -1,4 +1,4 @@
-# Historical Phase-4 DMDc — independent replay, not yet full parity
+# Historical Phase-4 DMDc — full archived numerical reproduction
 
 A direct replay of the two original hourly windows from
 the private REF & HEMP WXF archive is possible **without Mathematica**.
@@ -59,3 +59,17 @@ and the saved summary tables do not uniquely determine which workflow was
 used for all systems. Therefore a full-window refit must **not** be
 mistaken for validation of the historical training-set coefficients.
 W1/REF numerical parity remains open without recovered source policy.
+
+## Updated October 2026 acceptance
+
+The original broad-grid script is no longer the preferred historical
+acceptance runner. See [DMDc_COMPLETE_NUMERICAL_REPRODUCTION.md](DMDc_COMPLETE_NUMERICAL_REPRODUCTION.md)
+and `python_tools/replay_phase4_dmdc_complete.py`, which implement the
+**numerically inferred** common ridge grid (1e-3, 1e-2, 1e-1, 1, 10, 100)
+and retain the 70%-training coefficients without a full-window refit.
+
+With the archived original WXF, this recovers 90/90 forcing-ratio rows,
+40/40 memory rows, and 960/960 impulse rows at high numerical precision.
+W1 and REF118 results are included, superseding the older exploratory
+W2-only conclusions above. The historical transient code itself remains
+unrecovered, and no scientific data are made public.

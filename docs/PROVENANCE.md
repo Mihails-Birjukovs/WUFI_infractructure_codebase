@@ -46,3 +46,17 @@ The Appendix I.1 retained reconstruction listing's horizon-gap policy still requ
 ### Near-horizon gap reconstruction refinement
 
 The module explicitly uses the same minimum cosine in *both* clearness-index calculation and its inverse transformation back to GHI. The report's compact WAC source listing describes the inverse as using unclamped positive `cos(zenith)`; that can understate irradiance for near-horizon daylight gaps. Independent numerical analysis of the 17,520-row archived audit indicates only three daylight gap samples are affected materially. A reconstruction using consistent clamping approaches the archived reference within roughly 0.22 W/m² at those gaps, versus about 5.6 W/m² without consistent clamping. **These are method-analysis comparisons, not an exact runtime pass by the committed `pvlib` module against the full private audit.**
+
+## 17 October 2026 update: recovered DMDc numerical procedure
+
+The complete original DMDc Python code was not retained. However,
+comparing source-aligned WXF refits to three independent archived result
+tables numerically identifies the chronological joint 70/30 ridge
+selection with grid {0.001, 0.01, 0.1, 1, 10, 100}, keeping training-fit
+coefficients. This reproduces 90 input-set rows, 40 memory rows, and
+960 impulse-response rows to near-roundoff numerical precision.
+The grid was **inferred**, not found as original source text.
+
+HODMD remains distinct: the 480-fit independent cross-check shows
+a partial match, while historic 39-fit stability fractions are not
+reproducible to the same precision without missing mode-selection logic.

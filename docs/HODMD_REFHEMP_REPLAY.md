@@ -28,3 +28,13 @@ Reproducing archive HODMD numerically would require the original
 analytic-signal and edge-trimming specification, mode selection/ranking,
 stability-score definition, and exact runtime numerical settings.
 Do not treat this method-class check as exact model parity.
+
+## Additional independent per-fit comparison
+
+The second archived `paperstyle_hodmd_24h_crosscheck.csv` provides
+480 per-fit comparisons. The analytic-signal/forward-backward-averaged
+candidate at 24 h edge trim has **0.392 h median period difference**;
+only 141/480 modes agree within 0.1 h. This is not a match to the
+original 112-row rank/delay **stability fractions**.
+See [HODMD_PAPERSTYLE_NUMERICAL_COMPARISON.md](HODMD_PAPERSTYLE_NUMERICAL_COMPARISON.md).
+Unlike DMDc, full historical HODMD numerical acceptance is still open.
