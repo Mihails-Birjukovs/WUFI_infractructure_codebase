@@ -235,6 +235,8 @@ def main() -> None:
     p.add_argument("--output-json",type=Path)
     p.add_argument("--candidate-modes",type=Path,help="PRIVATE per-mode CSV")
     p.add_argument("--target",choices=list(TARGET_PERIODS))
+    p.add_argument("--valid-fits",type=Path,
+                   help="PRIVATE fit-status CSV, includes valid fits with no modes")
     p.add_argument("--relative-halfwidth",type=float,default=.30)
     p.add_argument("--selection",choices=("nearest_period","max_amplitude"),
                    default="nearest_period")
@@ -258,7 +260,14 @@ def main() -> None:
             max_abs_growth=args.max_abs_growth,
             min_amplitude=args.min_amplitude,
         )
-        valid = modes[list(FIT_KEYS)].drop_duplicates()
+        if args.valid_fits:
+            status = pd.read_csv(args.valid_fits)
+            if "fit_status" not in status:
+                p.error("--valid-fits must include fit_status")
+            valid = status.loc[status.fit_status.eq("valid_fit"),
+                               list(FIT_KEYS)].copy()
+        else:
+            valid = modes[list(FIT_KEYS)].drop_duplicates()
         counts = stability_counts(candidates, valid, args.target)
         historic = stable.loc[stable.target == args.target]
         comparison = counts.merge(

@@ -108,3 +108,33 @@ numeric rank tolerance, and modal stability acceptance logic.
 No acceptance/release threshold has been changed. See
 \`docs/HODMD_PAPERSTYLE_NUMERICAL_COMPARISON.md\` for the distinct
 480-fit cross-check and remaining numerical mismatch.
+
+## Generate full candidate spectra without the original HODMD code
+
+The original archive lacks a per-fit, per-eigenmode spectrum. To test
+period-window and ranking hypotheses rather than infer them from only
+quantiles, \`python_tools/hodmd_mode_catalog.py\` regenerates **all**
+positive-frequency modes for a transparent reference *real-valued*
+delay-DMD implementation.
+
+Input: private three-sensor WXF manifest with HEMP19, HEMP27, REF118.
+The 6-channel \`HEMP_PRIMARY\` is intentionally excluded because its
+specific combined state matrix is not contained in that manifest.
+
+\`\`\`powershell
+python -m python_tools.hodmd_mode_catalog PRIVATE/three_sensors.json --output-dir PRIVATE/hodmd_rules
+python -m python_tools.hodmd_rule_recovery PRIVATE/hodmd_target_stability.csv PRIVATE/paperstyle_hodmd_24h_crosscheck.csv --candidate-modes PRIVATE/hodmd_rules/hodmd_private_full_modes.csv --valid-fits PRIVATE/hodmd_rules/hodmd_private_fit_status.csv --target 24h --relative-halfwidth 0.30 --selection nearest_period
+\`\`\`
+
+\`hodmd_private_full_modes.csv\` contains per-mode period, growth, modulus
+and first-physical-block contribution estimates. \`hodmd_private_fit_status.csv\`
+separately lists **all nominal fit attempts**, including exclusions and
+numerically failed fits. This is required to distinguish a fit that
+contains no positive-frequency modes from an invalid fit, and to count
+denominators correctly.
+
+**This is not historical HODMD identity.** Real delay-DMD, unlike the
+paper-style complex analytic forward/backward operator, has different
+modes and amplitudes. Any apparent rule fit is conditional on matching
+the original spectral generation method. Do not export the private
+per-mode catalog into public GitHub.
