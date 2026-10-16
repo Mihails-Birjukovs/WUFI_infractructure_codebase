@@ -122,7 +122,7 @@ def best_lag_correlation(sensor: np.ndarray, model: np.ndarray,
 
 
 def metrics(sensor: np.ndarray, model: np.ndarray, *,
-            compute_lag: bool = True) -> dict:
+            compute_lag: bool = False) -> dict:
     """Historical population SD and optional ±24-h absolute-peak lag."""
 
     a, b = np.asarray(sensor, float), np.asarray(model, float)
@@ -183,7 +183,7 @@ def replay(manifest: dict) -> tuple[pd.DataFrame, pd.DataFrame]:
         for variable, (a, b) in pairs.items():
             raw_values = pd.concat([a.rename("s"),b.rename("w")],axis=1).loc[
                 ANALYSIS_START:ANALYSIS_END].dropna()
-            raw_stat = metrics(raw_values["s"].to_numpy(), raw_values["w"].to_numpy())
+            raw_stat = metrics(raw_values["s"].to_numpy(), raw_values["w"].to_numpy(), compute_lag=True)
             rows.append({"sensor":sensor,"variable":variable,"band":"raw", **raw_stat})
             for band in BANDS:
                 svals=[]; wvals=[]
@@ -191,7 +191,7 @@ def replay(manifest: dict) -> tuple[pd.DataFrame, pd.DataFrame]:
                     svals.extend(_band_values(_windows(a,window))[band])
                     wvals.extend(_band_values(_windows(b,window))[band])
                 rows.append({"sensor":sensor,"variable":variable,"band":band,
-                             **metrics(np.asarray(svals),np.asarray(wvals))})
+                             **metrics(np.asarray(svals),np.asarray(wvals), compute_lag=True)})
         a, b = pairs["RH"]
         for slow in (48,72,96):
             for event in (8,12,18):
