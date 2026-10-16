@@ -67,3 +67,30 @@ def test_reject_percentage_humidity_at_writer(tmp_path):
     result["HREL"] = 65.0
     with pytest.raises(ValueError, match="dimensionless fraction"):
         write_wac(result, tmp_path / "bad.wac")
+
+
+def test_near_horizon_daylight_gap_inverse_clearness_index():
+    import pvlib
+    from python_tools.wac_from_audit import (
+        MIN_COS_ZENITH, noaa_solar_zenith,
+    )
+
+    f = _frame()
+    f["TIME"] = pd.date_range("2026-02-07 01:00", periods=len(f), freq="h")
+    idx = 4 * 24 + 8  # Feb 11 at 09:00 fixed standard local time
+    f.loc[idx, "source_available"] = 0
+    rebuilt = reconstruct_from_audit(f)
+    midpoint = pd.DatetimeIndex(f["TIME"] - pd.Timedelta(minutes=30))
+    z = noaa_solar_zenith(midpoint)
+    assert 0 < np.cos(np.deg2rad(z[idx])) < MIN_COS_ZENITH
+    indices = [idx - 24, idx + 24]
+    dni_extra = np.asarray(pvlib.irradiance.get_extra_radiation(midpoint.dayofyear), float)
+    kts = pvlib.irradiance.clearness_index(
+        ghi=f.loc[indices, "source_GHI"].to_numpy(float),
+        solar_zenith=z[indices],
+        extra_radiation=dni_extra[indices],
+        min_cos_zenith=MIN_COS_ZENITH,
+        max_clearness_index=1.0,
+    )
+    expected = float(np.mean(kts) * dni_extra[idx] * MIN_COS_ZENITH)
+    assert rebuilt.loc[idx, "ISGH"] == pytest.approx(expected, abs=1e-8)
