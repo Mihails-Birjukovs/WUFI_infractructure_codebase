@@ -155,3 +155,22 @@ def test_growth_sign_can_be_evaluated_without_claiming_historical_rule():
     z = summarize_candidate_spectra(
         x, target=24., require_nonpositive_growth=True)
     assert z.empty
+
+
+
+def test_retrospective_sweep_never_conflates_training_and_evaluation():
+    from python_tools.hodmd_rule_recovery import retrospective_rule_sweep
+    fixture=_complete_archived_fingerprint_fixture()
+    modes=_mode_catalog()
+    clone=modes.copy()
+    clone["system"]="HEMP19"
+    modes=pd.concat([modes,clone],ignore_index=True)
+    valid=modes[["system","window","source","delay_h","rank"]].drop_duplicates()
+    result=retrospective_rule_sweep(
+        modes,valid,fixture,target="24h",
+        relative_halfwidths=(.30,),selections=("nearest_period",),
+        decay_filters=(False,))
+    assert len(result)==1
+    assert result.iloc[0].train_groups==1
+    assert result.iloc[0].evaluation_groups==1
+    assert not result.iloc[0].historical_operator_proven

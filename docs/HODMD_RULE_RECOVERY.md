@@ -156,3 +156,24 @@ and/or mode-selection procedures, rather than substituting one archive
 for the other. \`--require-nonpositive-growth\` is now an explicit
 **hypothesis test** in the candidate-rule CLI; it is NOT asserted as
 the historical filtering rule.
+
+
+## Fixed rule-grid vs retrospective pseudo-holdout
+
+The CLI can additionally emit a private rule-sweep comparison:
+
+\`\`\`powershell
+python -m python_tools.hodmd_rule_recovery PRIVATE/hodmd_target_stability.csv PRIVATE/paperstyle_hodmd_24h_crosscheck.csv --candidate-modes PRIVATE/hodmd_rules/hodmd_private_full_modes.csv --valid-fits PRIVATE/hodmd_rules/hodmd_private_fit_status.csv --target 24h --retrospective-sweep-csv PRIVATE/hodmd_rules/rule_sweep.csv
+\`\`\`
+
+It evaluates **16 prespecified hypotheses**:
+relative halfwidths 0.29/0.30/0.35/0.40, nearest-period versus
+maximum-amplitude selection, and nonpositive-growth requirement
+enabled/disabled. HEMP27 W1 defines the training subset (experiment and
+WUFI); other available sensor/window groups are evaluated separately.
+
+**This is not a blind held-out validation**, because the historical
+aggregate outcomes have already been examined. Also, matching accepted
+counts without matching period/amp/growth/loadings does NOT establish
+source-code identity. It is designed to reject implausible rules
+systematically, not to select a release-ready HODMD implementation.

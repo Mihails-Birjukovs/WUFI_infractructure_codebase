@@ -239,6 +239,69 @@ def stability_counts(selected: pd.DataFrame, valid_fits: pd.DataFrame,
     return out
 
 
+
+def retrospective_rule_sweep(modes: pd.DataFrame, valid_fits: pd.DataFrame,
+        archived: pd.DataFrame, *, target: str = "24h",
+        relative_halfwidths=(.29, .30, .35, .40),
+        selections=("nearest_period","max_amplitude"),
+        decay_filters=(False,True),
+        training_system: str = "HEMP27",
+        training_window: str = "W1") -> pd.DataFrame:
+    """Compare prespecified candidate rules with pseudo-held-out groups.
+
+    Returns training and evaluation metrics *separately*; no parameters
+    are optimized automatically against the evaluation systems/windows.
+    Because researchers have already seen aggregate archive results,
+    this is a RETROSPECTIVE diagnostic, not a blind validation split.
+    """
+    if target not in TARGET_PERIODS:
+        raise ValueError("Unknown archive target")
+    target_rows = archived.loc[archived["target"] == target].copy()
+    if target_rows.empty:
+        raise ValueError("Archive contains no matching target")
+    unique_valid=valid_fits[list(FIT_KEYS)].drop_duplicates()
+    if unique_valid.empty:
+        raise ValueError("No valid-fit rows")
+    records=[]
+    for width in relative_halfwidths:
+        for selection in selections:
+            for decay in decay_filters:
+                selected=summarize_candidate_spectra(
+                    modes,target=TARGET_PERIODS[target],
+                    relative_halfwidth=float(width),selection=selection,
+                    require_nonpositive_growth=bool(decay))
+                calculated=stability_counts(selected,unique_valid,target)
+                joint=calculated.merge(
+                    target_rows[[*SUMMARY_KEYS,"nfits_total","nfits_found"]],
+                    on=list(SUMMARY_KEYS),suffixes=("_calc","_archive"),
+                    validate="one_to_one")
+                if len(joint) != len(calculated):
+                    raise ValueError("Archived group missing candidate fit")
+                # If the catalog contains HEMP_PRIMARY, include it only when
+                # its six-channel source was actually generated and validated.
+                train=(joint["system"] == training_system) & (
+                    joint["window"] == training_window)
+                if not train.any() or (~train).sum()==0:
+                    raise ValueError("Need training and distinct evaluation groups")
+                def score(part):
+                    error=np.abs(part["nfits_found_calc"]-
+                                 part["nfits_found_archive"]).to_numpy(float)
+                    return float(error.mean()),int(np.count_nonzero(error==0))
+                train_mae,train_exact=score(joint.loc[train])
+                held_mae,held_exact=score(joint.loc[~train])
+                records.append({
+                    "target":target,"halfwidth":float(width),
+                    "selection":selection,
+                    "require_nonpositive_growth":bool(decay),
+                    "train_groups":int(train.sum()),"train_count_mae":train_mae,
+                    "train_exact_counts":train_exact,
+                    "evaluation_groups":int((~train).sum()),
+                    "evaluation_count_mae":held_mae,
+                    "evaluation_exact_counts":held_exact,
+                    "historical_operator_proven":False,
+                })
+    return pd.DataFrame(records)
+
 def main() -> None:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("stability_summary",type=Path)
@@ -253,6 +316,8 @@ def main() -> None:
                    default="nearest_period")
     p.add_argument("--max-abs-growth",type=float)
     p.add_argument("--min-amplitude",type=float)
+    p.add_argument("--retrospective-sweep-csv", type=Path,
+                   help="PRIVATE table of fixed candidate rules, training vs evaluation")
     p.add_argument("--require-nonpositive-growth", action="store_true",
                    help="Candidate decay/stability hypothesis; not recovered source")
     args = p.parse_args()
@@ -288,6 +353,14 @@ def main() -> None:
             historic[[*SUMMARY_KEYS,"nfits_total","nfits_found"]],
             on=list(SUMMARY_KEYS), suffixes=("_candidate","_archived"),
             validate="one_to_one")
+        if args.retrospective_sweep_csv:
+            sweep=retrospective_rule_sweep(modes,valid,stable,target=args.target)
+            args.retrospective_sweep_csv.parent.mkdir(parents=True,exist_ok=True)
+            sweep.to_csv(args.retrospective_sweep_csv,index=False)
+            report["retrospective_rule_sweep"]={
+                "hypotheses":len(sweep),
+                "file":str(args.retrospective_sweep_csv),
+                "not_blind_holdout":True}
         report["candidate_rule"] = {
             "relative_halfwidth":args.relative_halfwidth,
             "selection":args.selection,
