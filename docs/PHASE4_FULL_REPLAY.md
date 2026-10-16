@@ -85,3 +85,23 @@ python -m python_tools.replay_phase4_multiscale PRIVATE/manifest.json PRIVATE/ba
 The output contains numerical summaries and archived table comparisons.
 Keep the raw manifest, sensor recordings, production WXF inputs and all
 private per-hour data out of the public repository.
+
+## Best-lag parity (additional acceptance, 2026-10-17)
+
+The archived two lag columns `best_lag_corr` and `best_lag_h` have now
+been recomputed from the original 60 reconstructed sensor/WUFI series.
+The historical convention is to scan **all integer lags from −24 through
++24 h**, calculate Pearson correlation of overlapping samples at each lag,
+and select the lag with the **maximum absolute correlation**, retaining
+its sign. Positive lag compares the sensor at time t with WUFI at t+lag.
+
+The accepted saved metrics operate on the raw 3010 valid hourly pairs or
+the concatenation of 2493 edge-trimmed filtered hourly pairs from the
+two historical windows. No artificial samples are added at the boundary.
+
+Independent private replay findings:
+- **60/60** archived best-lag hours reproduced exactly.
+- Maximum absolute best-lag correlation discrepancy: **3.94446e-10**.
+- Mean absolute best-lag correlation discrepancy: **3.13139e-11**.
+- This completes all numerical fields of the **60 main band-metric rows**.
+- The 135 cutoff-robustness comparisons remain as previously passed.
