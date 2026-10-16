@@ -30,4 +30,4 @@ def test_raw_centered_hourly_median_includes_edge_samples():
     out=centered_hourly_medians(raw,pd.date_range("2026-01-01 01:00",
                                                periods=2,freq="h"))
     assert out["T"].iloc[0] == 2.
-    assert out["T"].iloc[1] == 8.
+    assert out["T"].iloc[1] == 6.5  # 01:30 and 02:01 both lie within ±30 minutes
