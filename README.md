@@ -8,6 +8,7 @@
 | --- | --- | --- |
 | [`wac_from_audit.py`](python_tools/wac_from_audit.py) | Reconstruct end-labelled WUFI WAC_02 climate from audited hourly data using `pvlib`/Erbs | Adapted from retained REF/HEMP report implementation |
 | [`multiscale.py`](python_tools/multiscale.py) | Slow, event and fast time-scale decomposition and comparison metrics | Reconstructed moving-window report method (not equivalent to archived Butterworth results) |
+| [`multiscale_butterworth.py`](python_tools/multiscale_butterworth.py) | Fourth-order zero-phase Butterworth method from archived Phase-4 settings | New reference implementation, not recovered original source |
 | [`dmd.py`](python_tools/dmd.py) | Exact DMD and delay-embedded DMD/HODMD-style analysis | New reference implementation |
 | [`dmdc.py`](python_tools/dmdc.py) | Ridge-regularized delay DMDc with lagged forcing and impulse-response metrics | Reconstructed report method |
 | [Synthetic examples](python_tools/examples/) | Generate and analyse synthetic climate and state/forcing signals | Demonstrations, not experimental results |

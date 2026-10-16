@@ -70,3 +70,17 @@ summary = peak_and_memory(response, dt_hours=1)
 The control-history simulation advances lagged inputs consistently; impulse peak/gain are expressed **in the chosen standardized input/state units**, not automatically in raw °C/%RH/W/m². Predictive association is not a causal experiment. Diagnose robustness across choices of delay depth and regularization before inferring pathways.
 
 See [method provenance](../docs/PROVENANCE.md). The historical Phase-4 multiscale and DMDc temporary files were **not recovered**; current modules correspond to reconstructed report methods. The DMD/HODMD module is a newly introduced reference implementation.
+
+## Butterworth multiscale method used in the archived Phase-4 analysis
+
+The historical Phase-4 `analysis_method.json` specifies fourth-order zero-phase Butterworth filters at 12h/72h cutoffs, 240-hour minimum contiguous segments, and 72-hour edge trimming. The complementary `multiscale_butterworth.py` follows **that method class**, whereas `multiscale.py` follows the reconstructed centered-mean demonstration in Appendix I.3.
+
+```python
+from python_tools.multiscale_butterworth import butterworth_band_metrics
+
+# Provide UTC-normalized hourly sensor and WUFI DatetimeIndex Series.
+metrics = butterworth_band_metrics(sensor, model,
+    slow_hours=72, event_hours=12, min_segment_hours=240, trim_hours=72)
+```
+
+The exact archived source and independent paired-series data-preparation are still required for historical numerical equivalence; two Butterworth implementations may differ in boundary and QC choices.

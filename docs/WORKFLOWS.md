@@ -71,3 +71,7 @@ python python_tools/validate_wac_reference.py Spilve_solar_hourly_audit.csv Spil
 ```
 
 This compares all **17,520** original WAC records and seven numeric fields against the retained hourly audit; passing only establishes audit-vs-WAC consistency. To check newly generated WAC, replace the WAC path with the new file; a nonzero status indicates disagreement with the historical audit.
+
+### Archived Phase-4 Butterworth variant
+
+For a closer match to the archived **filter class**, use `python_tools.multiscale_butterworth.butterworth_band_metrics` (fourth-order zero-phase Butterworth, 12 h and 72 h cutoffs, at least 240 h contiguous valid samples, 72 h trimmed at each edge). This supplements rather than replaces the Appendix I moving-average reconstruction; the historical alignment/QC and precise filter settings still need independent equivalence tests against the archived tables.

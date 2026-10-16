@@ -38,3 +38,7 @@ The archived **Phase-4 multiresolution** `analysis_method.json` specifies a **fo
 The authorized historical `Spilve_solar_hourly_audit.csv` and `Spilve_exterior_full_2025_2026_padded_solar_corrected_Erbs_ISGH_ISD.wac` contain **17,520 matching end-labelled hourly records**, from 2025-01-01 01:00 to 2027-01-01 00:00. An independently executed direct audit-versus-archive comparison found maximum absolute solar-column differences of 4.4071e-10 W/m² for ISGH and 4.9796e-10 W/m² for ISD. HREL in these artifacts is fractional, spanning approximately 0.267–0.990. This validates **the retained audit/WAC pair**, not the new Python re-execution. Input data are not copied to this public repository.
 
 The Appendix I.1 retained reconstruction listing's horizon-gap policy still requires explicit verification against the historical audit for numerical equivalence; near-horizon gap reconstruction is sensitive to whether solar cosine clamping is applied before converting clearness index back to GHI. The archived tables should not be treated as a pass for the new generator without that comparison.
+
+## Supplemental Butterworth reconstruction
+
+`multiscale_butterworth.py` is a **new implementation of the archived Phase-4 method class** specified in `analysis_method.json`; it is not the original temporary script. Unit tests check segmentation, edge trim, band reconstruction and self-comparison. Historical numerical equivalence remains pending.

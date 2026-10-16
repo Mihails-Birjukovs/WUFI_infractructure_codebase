@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - WUFI_python_tools
-      - 'feat/python-*'
-      - 'test/python-*'
   pull_request:
     branches:
       - WUFI_python_tools
