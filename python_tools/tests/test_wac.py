@@ -14,7 +14,7 @@ def _frame():
     available[24 * 4 + 12] = 0
     return pd.DataFrame({
         "TIME": times, "source_GHI": ghi, "source_available": available,
-        "TA": 10.0, "HREL": 65.0, "WD": 180.0, "WS": 1.5, "PMSL": 1013.25,
+        "TA": 10.0, "HREL": 0.65, "WD": 180.0, "WS": 1.5, "PMSL": 1013.25,
     })
 
 
@@ -31,6 +31,7 @@ def test_wac_gap_infill_and_header(tmp_path):
     text = path.read_text(encoding="latin-1")
     assert text.startswith("WUFI®_WAC_02")
     assert "TIME\tTA\tHREL\tISGH\tISD\tWD\tWS\tPMSL" in text
+    assert text.splitlines()[12].startswith("2026-04-01 01:00\\t".replace("\\t", "\t"))
     assert len(text.splitlines()) == len(result) + 12
 
 
@@ -52,3 +53,17 @@ def test_missing_ghi_flag():
     f.loc[0, "source_GHI"] = float("nan")
     with pytest.raises(ValueError, match="GHI must be finite"):
         validate_audit(f)
+
+
+def test_reject_percentage_humidity():
+    f = _frame()
+    f["HREL"] = 65.0  # typical percent input, not the expected 0..1 WAC fraction
+    with pytest.raises(ValueError, match="dimensionless fraction"):
+        validate_audit(f)
+
+
+def test_reject_percentage_humidity_at_writer(tmp_path):
+    result = reconstruct_from_audit(_frame())
+    result["HREL"] = 65.0
+    with pytest.raises(ValueError, match="dimensionless fraction"):
+        write_wac(result, tmp_path / "bad.wac")

@@ -65,8 +65,8 @@ def validate_audit(frame: pd.DataFrame) -> pd.DataFrame:
     present = f["source_available"].to_numpy(dtype=bool)
     if not np.isfinite(f.loc[present, "source_GHI"].to_numpy(dtype=float)).all():
         raise ValueError("GHI must be finite whenever source_available is true")
-    if not f["HREL"].between(0, 100).all():
-        raise ValueError("HREL must be in percent [0, 100]")
+    if not f["HREL"].between(0, 1).all():
+        raise ValueError("HREL must be a dimensionless fraction in [0, 1]; do not use percentages")
     if (f["WS"] < 0).any() or (f["PMSL"] <= 0).any():
         raise ValueError("Wind speed must be nonnegative; pressure must be positive")
     return f
@@ -184,6 +184,8 @@ def write_wac(
     values = frame.loc[:, list(WAC_COLUMNS)]
     if not np.isfinite(values.drop(columns="TIME").to_numpy(dtype=float)).all():
         raise ValueError("WAC contains nonfinite numerical fields")
+    if not values["HREL"].between(0, 1).all():
+        raise ValueError("WAC HREL must be a dimensionless fraction in [0, 1]")
     header = [
         "WUFI®_WAC_02",
         "10\tLine Offset to 'Number of Data Columns'",
@@ -202,7 +204,7 @@ def write_wac(
     with path.open("w", encoding="latin-1", newline="\n") as stream:
         stream.write("\n".join(header) + "\n")
         for row in values.itertuples(index=False, name=None):
-            time_text = pd.Timestamp(row[0]).strftime("%Y-%m-%d%H:%M")
+            time_text = pd.Timestamp(row[0]).strftime("%Y-%m-%d %H:%M")
             stream.write("\t".join([time_text] + [f"{float(v):.12g}" for v in row[1:]]) + "\n")
 
 

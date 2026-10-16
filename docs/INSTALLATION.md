@@ -26,7 +26,7 @@ Dependencies: NumPy, pandas, pvlib; pytest for regression tests. Version constra
 | --- | --- |
 | `TIME` | End-labelled local **fixed-standard-time** timestamp, `YYYY-MM-DD HH:MM:SS`; continuous hourly timestamps, no DST jumps |
 | `TA` | Air temperature, °C |
-| `HREL` | Relative humidity, percentage [0, 100] |
+| `HREL` | Relative humidity, dimensionless fraction [0, 1] |
 | `WD`, `WS` | Wind direction (degrees) and nonnegative wind speed (m/s) |
 | `PMSL` | Mean sea-level pressure: preserve and verify WUFI/importer units |
 | `source_GHI` | Measured/audited hourly **global horizontal** solar irradiance (W/m²); not diffuse irradiance |

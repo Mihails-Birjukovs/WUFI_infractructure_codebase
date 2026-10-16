@@ -18,7 +18,7 @@ python -m python_tools.examples.make_synthetic_inputs --out-dir demo_outputs
 python python_tools/wac_from_audit.py demo_outputs/synthetic_wac_audit.csv demo_outputs/synthetic_climate.wac
 ```
 
-The CSV must contain `TIME,TA,HREL,WD,WS,PMSL,source_GHI,source_available`. TIME must be **continuous, sorted, hourly, timezone-naive and end-labelled using a single fixed UTC offset**. The climate fields follow WAC order: TA °C, HREL %, ISGH/ISD W/m², wind WD degrees / WS m/s, and PMSL in the original WUFI project convention (verify pressure units with your WUFI version/source). `source_GHI` is global horizontal solar irradiance (W/m²); `source_available` is measured-source availability (0/1 or true/false).
+The CSV must contain `TIME,TA,HREL,WD,WS,PMSL,source_GHI,source_available`. TIME must be **continuous, sorted, hourly, timezone-naive and end-labelled using a single fixed UTC offset**. The climate fields follow WAC order: TA °C, HREL 0–1 fraction, ISGH/ISD W/m², wind WD degrees / WS m/s, and PMSL in the original WUFI project convention (verify pressure units with your WUFI version/source). `source_GHI` is global horizontal solar irradiance (W/m²); `source_available` is measured-source availability (0/1 or true/false).
 
 The default historical coordinate is `--latitude 56.97 --longitude 24.17 --utc-offset-hours 2`. For a new physical site, override the two coordinates and confirm fixed-time convention:
 

@@ -59,3 +59,5 @@ A/B are linear predictive matrices fitted in **whatever units and standardized s
 ## 6. Scientific acceptance
 
 Run tests on synthetic fixtures, then independently cross-check climate reconstruction with approved historical WAC/audit data and modal/multiscale results with frozen REF/HEMP tables. Keep versioned parameter/rank/window choices and review physical assumptions before public release.
+
+**Historical multiscale caveat:** The original Phase-4 archive's `analysis_method.json` specifies fourth-order zero-phase Butterworth filtering and trimming of contiguous valid segments. The centered-window means shown here are the **reconstructed Appendix I** method and are *not directly comparable numerically* with the original archived Phase-4 band tables.

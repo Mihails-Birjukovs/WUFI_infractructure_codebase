@@ -17,7 +17,7 @@ def build(out_dir: Path) -> None:
     flag[24 * 4 + 12] = 0  # one internal midday gap, bracketed by other days
     audit = pd.DataFrame({
         "TIME": times, "TA": 4 + 5 * np.sin(2 * np.pi * hours / 24),
-        "HREL": 70 + 15 * np.cos(2 * np.pi * hours / 24),
+        "HREL": 0.70 + 0.15 * np.cos(2 * np.pi * hours / 24),
         "WD": np.full(n, 180.0), "WS": np.full(n, 2.0),
         "PMSL": np.full(n, 1013.25), "source_GHI": ghi,
         "source_available": flag,

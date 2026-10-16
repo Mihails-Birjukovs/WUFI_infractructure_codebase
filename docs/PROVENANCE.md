@@ -28,3 +28,7 @@ The historical reconstructed WAC uses **56.97 N, 24.17 E**. The physical test-ho
 The actual Mathematica launcher, post-processor and sensor comparison production releases remain in the [Mathematica branch](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/tree/WUFI_mathematica_tools). REF/HEMP monitoring records, production weather audits, physical WUFI models, calibration artifacts and validation tables are not copied into this public repository.
 
 See [branch policy](BRANCHING.md).
+
+## Historical method non-equivalence identified in Drive archive
+
+The archived **Phase-4 multiresolution** `analysis_method.json` specifies a **fourth-order zero-phase Butterworth filter**, slow band above 72 h, 12–72 h middle band, events below 12 h, complete contiguous intervals at least 240 h, and **72 h edge trimming** per segment. By contrast, the report's Appendix I.3 reconstructed pseudocode—and `python_tools/multiscale.py`—uses **centered moving means**. Its numerical results are *not expected to reproduce* the archived Phase-4 `band_metrics.csv` or `cutoff_robustness.csv` exactly. A separate historical Butterworth implementation with the original QC-aligned input series would be required for that comparison. This limitation is recorded rather than misrepresenting the module as already historically validated.
