@@ -12,7 +12,7 @@
 | [`dmd.py`](python_tools/dmd.py) | Exact DMD and delay-embedded DMD/HODMD-style analysis | New reference implementation |
 | [`dmdc.py`](python_tools/dmdc.py) | Ridge-regularized delay DMDc with lagged forcing and impulse-response metrics | Reconstructed report method |
 | [Synthetic examples](python_tools/examples/) | Generate and analyse synthetic climate and state/forcing signals | Demonstrations, not experimental results |
-| [Python tests](python_tools/tests/) | Synthetic regression checks | Pending runtime execution |
+| [Python tests](python_tools/tests/) | Synthetic regression checks | CI synthetic tests and examples pass on Python 3.11–3.13 (2026-10-16) |
 
 ## Installation
 
@@ -54,7 +54,7 @@ The production Wolfram Launcher v1.0, WUFI ASC Post-Processor v1.1.1 and WUFI Se
 
 ## Data, licensing and release status
 
-Python 3.10+ is recommended. WUFI Pro, Mathematica, project-specific weather audits, sensor measurements and simulation outputs are separate licensed/private inputs; they are not supplied here. The new algorithms require runtime and historical-data equivalence validation before a publication-grade release. See [LICENSE](LICENSE).
+Python 3.10+ is recommended. WUFI Pro, Mathematica, project-specific weather audits, sensor measurements and simulation outputs are separate licensed/private inputs; they are not supplied here. Synthetic Python CI is passing on 3.11–3.13. Historical-data numerical equivalence and end-to-end WUFI import still require separate verification before a publication-grade release. See [LICENSE](LICENSE).
 
 ### Historical WAC baseline comparison
 
