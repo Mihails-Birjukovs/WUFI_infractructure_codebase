@@ -61,3 +61,13 @@ A/B are linear predictive matrices fitted in **whatever units and standardized s
 Run tests on synthetic fixtures, then independently cross-check climate reconstruction with approved historical WAC/audit data and modal/multiscale results with frozen REF/HEMP tables. Keep versioned parameter/rank/window choices and review physical assumptions before public release.
 
 **Historical multiscale caveat:** The original Phase-4 archive's `analysis_method.json` specifies fourth-order zero-phase Butterworth filtering and trimming of contiguous valid segments. The centered-window means shown here are the **reconstructed Appendix I** method and are *not directly comparable numerically* with the original archived Phase-4 band tables.
+
+### Independent historical WAC audit comparison
+
+With separately authorized copies of the historical hourly CSV and WAC (not in this public repository):
+
+```powershell
+python python_tools/validate_wac_reference.py Spilve_solar_hourly_audit.csv Spilve_exterior_full_2025_2026_padded_solar_corrected_Erbs_ISGH_ISD.wac
+```
+
+This compares all **17,520** original WAC records and seven numeric fields against the retained hourly audit; passing only establishes audit-vs-WAC consistency. To check newly generated WAC, replace the WAC path with the new file; a nonzero status indicates disagreement with the historical audit.

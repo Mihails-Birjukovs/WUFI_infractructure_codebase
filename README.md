@@ -54,3 +54,7 @@ The production Wolfram Launcher v1.0, WUFI ASC Post-Processor v1.1.1 and WUFI Se
 ## Data, licensing and release status
 
 Python 3.10+ is recommended. WUFI Pro, Mathematica, project-specific weather audits, sensor measurements and simulation outputs are separate licensed/private inputs; they are not supplied here. The new algorithms require runtime and historical-data equivalence validation before a publication-grade release. See [LICENSE](LICENSE).
+
+### Historical WAC baseline comparison
+
+For authorized local copies of the archived hourly audit and WAC, use `python python_tools/validate_wac_reference.py Spilve_solar_hourly_audit.csv original.wac` to validate the file's numerical contract. This checks the provided WAC against the audit table; it does **not** rerun the original meteorological reconstruction.
