@@ -99,3 +99,14 @@ authorized source data.
 
 Do not label 112/112 HODMD stability results as reproduced or
 alter the already accepted DMDc model.
+
+## Full-SVD cross-check of cached covariance eigenspectra
+
+Four representative rank/delay/system fits were recomputed in the
+private isolated environment using independent full-SVD snapshot DMD
+rather than the accelerated covariance eigensolver used to assemble
+the 2,654 modes. Mode-to-mode maximum absolute period discrepancies
+were below **6.5e-8 hours**, growth discrepancies below **1.9e-12 /h**,
+and amplitudes below **3.5e-9**. These checks support numerical
+consistency of the private spectral extraction; they do not verify
+historical mode-selection policy.
