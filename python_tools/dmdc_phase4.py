@@ -42,12 +42,15 @@ def fit(x, u, p=12, ridge=1e-8):
     return beta[:z.shape[1]].T, beta[z.shape[1]:].T
 
 
-def joint_ridge(exp_x, model_x, u, p=12, grid=(0., 1e-8, 1e-6, 1e-4, 1e-2),
+def joint_ridge(exp_x, model_x, u, p=12, grid=(1e-3, 1e-2, 1e-1, 1., 10., 100.),
                 train_fraction=.7):
     """Joint chronological 70/30 one-step validation (teacher forcing).
 
-    Archived source does not specify the exact original crossvalidation
-    scoring or grid; this is a documented, explicit reference choice.
+    The six-point default ridge grid (10^-3 ... 10^2) was inferred by
+    independently reproducing the 90 archived gain records, 40 memory
+    configurations and 960 impulse-response rows, not recovered verbatim
+    from the lost original script. Retain the 70% training coefficients;
+    never refit on all samples after selecting the ridge.
     """
     e, m, u = _mat(exp_x, "exp"), _mat(model_x, "model"), _mat(u, "u")
     if len(e) != len(m) or len(e) != len(u) or e.shape[1] != m.shape[1]:

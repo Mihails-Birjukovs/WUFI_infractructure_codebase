@@ -26,7 +26,7 @@ from python_tools.wxf_subset import raw_sensor_samples
 
 TARGETS = ("HEMP27", "HEMP19", "REF118")
 LAGS = (12, 24, 48)
-RIDGE_GRID = (0., 1e-8, 1e-6, 1e-4, 1e-2, 1., 100.)
+RIDGE_GRID = (1e-3, 1e-2, 1e-1, 1., 10., 100.)
 
 
 def normalize_states(experiment: np.ndarray, model: np.ndarray
