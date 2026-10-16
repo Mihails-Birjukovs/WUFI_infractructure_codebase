@@ -32,9 +32,9 @@ py -3 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install -r python_tools/requirements.txt
 python -m pytest -q python_tools/tests
-python python_tools/examples/make_synthetic_inputs.py --out-dir demo_outputs
+python -m python_tools.examples.make_synthetic_inputs --out-dir demo_outputs
 python python_tools/wac_from_audit.py demo_outputs/synthetic_wac_audit.csv demo_outputs/synthetic_climate.wac
-python python_tools/examples/run_modal_example.py --out-dir demo_outputs
+python -m python_tools.examples.run_modal_example --out-dir demo_outputs
 ```
 
 The example generation script uses **synthetic data**, not the REF/HEMP measurements. Do not use the resulting synthetic WAC as a physical model boundary condition.

@@ -25,7 +25,7 @@ Follow [workflow steps 2 and 3](WORKFLOWS.md) using the final selectors `Wall_RE
 ## Example C: generate a demonstrator WAC without private monitoring data
 
 ```powershell
-python python_tools/examples/make_synthetic_inputs.py --out-dir demo_outputs
+python -m python_tools.examples.make_synthetic_inputs --out-dir demo_outputs
 python python_tools/wac_from_audit.py demo_outputs/synthetic_wac_audit.csv demo_outputs/synthetic_climate.wac
 ```
 
@@ -34,7 +34,7 @@ The input contains toy hourly temperatures, humidity, pressure, wind and solar i
 ## Example D: DMD, DMDc and multiscale diagnostic from a known synthetic signal
 
 ```powershell
-python python_tools/examples/run_modal_example.py --out-dir demo_outputs
+python -m python_tools.examples.run_modal_example --out-dir demo_outputs
 ```
 
 The example constructs two signals with a known daily periodic component and a driven first-order response. It demonstrates: multiscale band metrics, exact DMD and time-delay DMD, ridge-regularized delay DMDc, and an impulse response. Outputs are local demonstration CSVs/JSON, not validation of the REF/HEMP physical interpretation.

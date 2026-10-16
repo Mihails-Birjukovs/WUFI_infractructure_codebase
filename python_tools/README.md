@@ -14,7 +14,7 @@ The tools are standalone scripts, **not WUFI or Mathematica dependencies**. They
 ## WAC from an audited hourly climate CSV
 
 ```powershell
-python python_tools/examples/make_synthetic_inputs.py --out-dir demo_outputs
+python -m python_tools.examples.make_synthetic_inputs --out-dir demo_outputs
 python python_tools/wac_from_audit.py demo_outputs/synthetic_wac_audit.csv demo_outputs/synthetic_climate.wac
 ```
 
