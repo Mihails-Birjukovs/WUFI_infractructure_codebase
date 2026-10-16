@@ -54,6 +54,7 @@ python -m python_tools.examples.run_modal_example --out-dir demo_outputs
 - [Phase-4 DMDc source-level replay](docs/DMDc_FULL_REPLAY.md)
 - [Complete 90+40+960 archival DMDc numerical reproduction](docs/DMDc_COMPLETE_NUMERICAL_REPRODUCTION.md)
 - [Analytic forward/backward HODMD 480-fit sensitivity](docs/HODMD_PAPERSTYLE_NUMERICAL_COMPARISON.md)
+- [HODMD original-rule recovery and full-spectrum diagnostics](docs/HODMD_RULE_RECOVERY.md)
 - [HODMD independent daily-mode check](docs/HODMD_REFHEMP_REPLAY.md)
 - [Scientific input SHA-256 manifests and release gates](docs/SCIENTIFIC_RELEASE_GATES.md)
 
