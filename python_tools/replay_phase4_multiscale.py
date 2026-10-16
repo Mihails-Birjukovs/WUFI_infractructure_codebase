@@ -87,14 +87,55 @@ def _band_values(values: np.ndarray, slow_hours: int = 72,
     }
 
 
-def metrics(sensor: np.ndarray, model: np.ndarray) -> dict:
-    """The historical archive uses population SD (ddof=0), not ddof=1."""
+def best_lag_correlation(sensor: np.ndarray, model: np.ndarray,
+                         max_lag_h: int = 24) -> tuple[float, int]:
+    """Archived Phase-4 convention: signed Pearson at maximal |r|, ±24 h.
+
+    Positive lag means the WUFI series follows the sensor by that many
+    hourly samples. We scan a single *concatenated* array for the two
+    independent, edge-trimmed Butterworth windows, as in the saved results.
+    We do not insert values into either filtered segment.
+    """
+    a, b = np.asarray(sensor, float), np.asarray(model, float)
+    if a.ndim != 1 or b.ndim != 1 or a.shape != b.shape:
+        raise ValueError("Best-lag inputs must be equal-length 1D arrays")
+    if not isinstance(max_lag_h, int) or max_lag_h < 0 or len(a) <= max_lag_h+2:
+        raise ValueError("Not enough hourly samples for requested lag scan")
+    if not np.isfinite(a).all() or not np.isfinite(b).all():
+        raise ValueError("Best-lag inputs must be finite")
+    choices = []
+    for lag in range(-max_lag_h, max_lag_h+1):
+        if lag > 0:
+            x, y = a[:-lag], b[lag:]
+        elif lag < 0:
+            x, y = a[-lag:], b[:lag]
+        else:
+            x, y = a, b
+        if np.std(x) == 0 or np.std(y) == 0:
+            choices.append(np.nan)
+        else:
+            choices.append(float(np.corrcoef(x, y)[0, 1]))
+    if np.isnan(choices).all():
+        raise ValueError("Undefined lag correlation at every shift")
+    best = int(np.nanargmax(np.abs(choices)))
+    return float(choices[best]), int(best-max_lag_h)
+
+
+def metrics(sensor: np.ndarray, model: np.ndarray, *,
+            compute_lag: bool = True) -> dict:
+    """Historical population SD and optional ±24-h absolute-peak lag."""
+
     a, b = np.asarray(sensor, float), np.asarray(model, float)
     if len(a) != len(b) or len(a) < 3:
         raise ValueError("Insufficient aligned data")
     error = b-a
     sa, sb = np.std(a), np.std(b)
+    lag_fields = {}
+    if compute_lag:
+        peak, lag = best_lag_correlation(a, b, max_lag_h=24)
+        lag_fields = {"best_lag_corr": peak, "best_lag_h": lag}
     return {
+        **lag_fields,
         "n": len(a), "bias": float(np.mean(error)),
         "rmse": float(np.sqrt(np.mean(error**2))),
         "mae": float(np.mean(np.abs(error))),
@@ -159,7 +200,7 @@ def replay(manifest: dict) -> tuple[pd.DataFrame, pd.DataFrame]:
                     for window in WINDOWS:
                         svals.extend(_band_values(_windows(a,window),slow,event)[band])
                         wvals.extend(_band_values(_windows(b,window),slow,event)[band])
-                    stat=metrics(np.asarray(svals),np.asarray(wvals))
+                    stat=metrics(np.asarray(svals),np.asarray(wvals), compute_lag=False)
                     robustness.append({"sensor":sensor,"slow_cutoff_h":slow,
                                        "event_cutoff_h":event,"band":band,**stat})
     return pd.DataFrame(rows), pd.DataFrame(robustness)
@@ -192,7 +233,8 @@ def main():
     rows,grid=replay(manifest)
     fields={"n":"n","bias":"bias","rmse":"rmse","mae":"mae",
             "sensor_sd":"sensor_sd","wufi_sd":"wufi_sd",
-            "amplitude_ratio":"amplitude_ratio_wufi_sensor","corr":"corr"}
+            "amplitude_ratio":"amplitude_ratio_wufi_sensor","corr":"corr",
+            "best_lag_h":"best_lag_h","best_lag_corr":"best_lag_corr"}
     gridfields={"n":"n","rmse":"rmse","sensor_sd":"sensor_sd",
                 "wufi_sd":"wufi_sd","amplitude_ratio":"amplitude_ratio","corr":"corr"}
     report={
@@ -202,7 +244,8 @@ def main():
                                             gridfields,
                                             ["sensor","slow_cutoff_h","event_cutoff_h","band"]),
         "method":"Phase-4 archived Butterworth + Buck vapour pressure",
-        "limitation":"Lag-scanning columns are not part of this regression suite.",
+        "best_lag_policy":"Pearson r; select maximal absolute r across -24..24 hourly shifts",
+        "scope":"All 60 main numeric rows including both best-lag columns; 135 RH cutoff rows.",
     }
     args.output_dir.mkdir(parents=True,exist_ok=True)
     rows.to_csv(args.output_dir/"replayed_band_metrics.csv",index=False)

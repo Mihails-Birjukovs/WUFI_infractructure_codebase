@@ -47,3 +47,15 @@ remain unverified.
 
 Do not publish source WXF, private hourly forcing/state arrays, or
 local rowwise outputs without a data-release review.
+
+## Important fitting-policy sensitivity (follow-up verification)
+
+An independent private run of the source-aligned data found that applying
+the chosen ridge-regression coefficients fitted on the **first 70%** of the
+window (as in `joint_ridge`) reproduces the HEMP27 and HEMP19 W2
+outpv-only reported gains and lags closely. Refitting those same chosen
+ridge values on **100%** of the samples changes W2 ratios substantially,
+and the saved summary tables do not uniquely determine which workflow was
+used for all systems. Therefore a full-window refit must **not** be
+mistaken for validation of the historical training-set coefficients.
+W1/REF numerical parity remains open without recovered source policy.
