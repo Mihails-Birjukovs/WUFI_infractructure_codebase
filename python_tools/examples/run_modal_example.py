@@ -27,7 +27,7 @@ def run(out_dir: Path) -> None:
     )
     snapshots = np.vstack([response, forcing])
     plain = exact_dmd(snapshots, rank=2)
-    delay = delay_dmd(snapshots, delays=12, rank=6)
+    delay = delay_dmd(snapshots, delays=12, rank=4)
     a, b = fit_delay_dmdc(response[:, None], forcing[:, None], p=12, ridge=1e-6)
     ir = impulse_response(a, b, p=12, n_state=1, horizon=72)
     pd.DataFrame({"hour": np.arange(len(ir)), "response": ir[:, 0]}).to_csv(
