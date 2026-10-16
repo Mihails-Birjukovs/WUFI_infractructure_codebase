@@ -28,3 +28,29 @@ sensor data. Synthetic tests cover the runner under GitHub Actions.
 The physical station \`solar_radiation\` measurement plane and calibration
 must still be verified before claiming that the assumed GHI interpretation
 is physically validated. WUFI import requires a licensed WUFI installation.
+
+## Archived near-horizon gap forensic check
+
+The retained solar audit records 23 daytime GHI source gaps filled using
+"source gap: same-hour kt interpolation (bracketed)". The documented
+method predicts 20 archived hours within 1e-6 W/m². Three near-horizon
+hours have *stored* kt values different from linear interpolation of the
+audited source measurements at the preceding and succeeding clock-hour days.
+
+- 2025-11-27 16:00 fixed UTC+2: rebuilt-minus-archive GHI ≈ +0.215687 W/m²
+- 2026-02-08 17:00 fixed UTC+2: ≈ −0.010730 W/m²
+- 2026-02-09 09:00 fixed UTC+2: ≈ −0.181203 W/m²
+
+Run \`python -m python_tools.diagnose_solar_gap_kt PRIVATE/Spilve_solar_hourly_audit.csv --report-json PRIVATE/solar_gap_report.json --difference-csv PRIVATE/solar_gap_differences.csv\`.
+
+The script reuses the archive's own solar geometry and extraterrestrial
+radiation fields, so its differences isolate archived clearness-index
+gap handling rather than Erbs DHI or new solar-position calculations.
+It does not identify whether these three records were created by an
+unretained source-code branch, a manual correction or another stage of
+processing. Do not force the reconstructed results to equal the archived
+kt values without such evidence.
+
+The actual repository's pvlib CLI still requires a full original-audit
+replay in an environment where pvlib is installed; the isolated container
+used for this forensic check has no pvlib package or PyPI network access.
