@@ -121,3 +121,22 @@ Retain the missing-source caveat in publication or code-release metadata.
 The independent complex analytic-signal paper-style
 480-fit HODMD cross-check is a DIFFERENT method and remains only
 partially reproduced. Do not merge those results into this benchmark.
+
+
+## Mode-ranking falsification checks
+
+Keeping the same eigenvalue modulus >=0.9 and multiplicative 1.3
+period gate, all of the following rankings reproduce the same **112
+accepted-fit counts**. However, the number of archived **period medians**
+reproduced within 1e-7 hours is:
+
+| Candidate fit-mode ranking | Matching median periods |
+| --- | ---: |
+| Nearest absolute log-period distance | **112/112** |
+| Nearest linear relative-period distance | 104/112 |
+| Nearest relative frequency | 102/112 |
+| Largest modal amplitude | 68/112 |
+
+This is an important independent fingerprint of the recovered selection
+rule, beyond matching its count statistics. It does not make the
+retrospective reconstruction uniquely identifiable as original source.

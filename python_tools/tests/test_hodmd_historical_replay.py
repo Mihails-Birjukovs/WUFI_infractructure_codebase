@@ -69,3 +69,21 @@ def test_full_112_record_comparison_and_corruption_detection():
     assert not compare_archive(tampered,frame)["all_numerical_fields_pass"]
     with pytest.raises(ValueError,match="112"):
         compare_archive(frame.iloc[:-1],frame)
+
+
+
+def test_nearest_log_period_differs_from_linear_relative_period():
+    # Lower mode is slightly closer in LINEAR relative error, while the
+    # upper mode is closer in log-period. Historical archive prefers upper.
+    base={"delay_h":12,"rank":6,"growth_per_h":np.log(.95)}
+    x=pd.DataFrame([
+        {**base,"mode_id":0,"period_h":24/1.28,"amplitude":1.,
+         "loading_0":.7,"loading_1":.7},
+        {**base,"mode_id":1,"period_h":24*1.25,"amplitude":1.,
+         "loading_0":.7,"loading_1":.7},
+    ])
+    chosen=select_modes(x,24.)
+    assert len(chosen)==1
+    assert chosen.iloc[0].mode_id==1
+    linear_choice=abs(24/1.28/24-1) < abs(24*1.25/24-1)
+    assert linear_choice
