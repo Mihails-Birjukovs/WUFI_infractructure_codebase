@@ -42,7 +42,7 @@ unless sharing is cleared. A checksum match is an integrity check,
 | Phase-4 DMDc 40 spectral-memory rows | **Numerically reproduced**, max spectral-radius error 8.31e-6 and max memory ratio error 0.000292 |
 | Phase-4 DMDc 960 six-input impulse rows | **Numerically reproduced, all 960 peak lags exact**, max individual peak-gain error 1.99e-5 |
 | Original Phase-4 DMDc transient source code | Not recovered; ridge grid and fit policy inferred numerically from independent original-data benchmarks |
-| Historical HODMD daily oscillatory mode | Recovered qualitatively; archived 112-row rank/delay stability fractions **not** reproduced |
+| Historical HODMD target-stability summary | **112/112 rows numerically reproduced** from original WXF using inferred period, modulus and rank gates; original script remains unavailable |
 | Independent 480-fit paper-style HODMD cross-check | Median period mismatch 0.392 h at 24-h trim; **not** historic numerical equivalence |
 | Wolfram 15/Linux cloud postprocessor smoke | 13/14 pass; only fresh-kernel graphics test failed; no launchable subkernels |
 | Definitive Mathematica 12.1/Windows + WUFI Pro 6.5 | **Blocked** until authorized connected workstation |
@@ -105,3 +105,20 @@ lie at 12/24/48-hour targets. **Original HODMD complete parity remains
 OPEN**; 28 HEMP_PRIMARY six-state source combinations are untested.
 See `docs/HODMD_PRIVATE_SPECTRAL_REPLAY.md`. The validated DMDc engine
 and normalization are not modified by this diagnostic.
+
+
+## Complete original HODMD numerical benchmark — updated 17 Oct 2026
+
+The subsequent independent replay found the original six-channel order
+[T27,pv27,T42,pv42,T18,pv18] and a common eligibility rule of
+|lambda|>=0.9, positive eigenfrequency, period in [P/1.3,1.3P],
+nearest-log-period selection, plus sample-SD (ddof=1) state scaling.
+**All 112/112 archival accepted-fit counts match exactly**; period medians,
+10th/90th percentiles, growth-rate medians, amplitudes and all available
+loading medians agree within documented numerical tolerances.
+
+The 112-row historical HODMD stability benchmark is now **numerically
+accepted**. The lost original script and exact source provenance are **not
+recovered**, and the 480-fit complex paper-style reference remains distinct
+and partially reproduced. This was retrospective, not blind independent
+threshold selection. See docs/HODMD_COMPLETE_NUMERICAL_REPRODUCTION.md.

@@ -56,6 +56,7 @@ python -m python_tools.examples.run_modal_example --out-dir demo_outputs
 - [Analytic forward/backward HODMD 480-fit sensitivity](docs/HODMD_PAPERSTYLE_NUMERICAL_COMPARISON.md)
 - [HODMD original-rule recovery and full-spectrum diagnostics](docs/HODMD_RULE_RECOVERY.md)
 - [Private original-WXF HODMD 84-group spectral replay and sample-SD recovery](docs/HODMD_PRIVATE_SPECTRAL_REPLAY.md)
+- [Complete 112-record historical HODMD numerical reproduction](docs/HODMD_COMPLETE_NUMERICAL_REPRODUCTION.md)
 - [HODMD independent daily-mode check](docs/HODMD_REFHEMP_REPLAY.md)
 - [Scientific input SHA-256 manifests and release gates](docs/SCIENTIFIC_RELEASE_GATES.md)
 

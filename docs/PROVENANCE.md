@@ -60,3 +60,16 @@ The grid was **inferred**, not found as original source text.
 HODMD remains distinct: the 480-fit independent cross-check shows
 a partial match, while historic 39-fit stability fractions are not
 reproducible to the same precision without missing mode-selection logic.
+
+
+## HODMD original-spectrum recovery, 17 October 2026
+
+The historical transient script was not retained. Nevertheless the complete
+112-row original target-stability CSV was independently reproduced from
+original private sensor/WUFI WXFs, including six-channel HEMP_PRIMARY
+[T27,pv27,T42,pv42,T18,pv18]. Recovered numerical rules include real
+truncated delay DMD, |lambda|>=0.9, factor-1.3 period gate, nearest
+log-period eigenmode selection, and shared experimental ddof=1 SD scaling.
+This is **numerical** source-WXF reproduction, not recovered original
+source text, unique parameter identifiability, or prospective scientific
+validation. The separate 480-fit analytic/fbDMD crosscheck is not identical.

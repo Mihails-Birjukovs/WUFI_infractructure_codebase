@@ -1,3 +1,12 @@
+
+
+## Superseded by complete 112-row replay
+
+The earlier incomplete 67/84 comparison below is retained for development
+provenance only. See docs/HODMD_COMPLETE_NUMERICAL_REPRODUCTION.md for the
+subsequent original-WXF 112/112 numerical agreement using |lambda|>=0.9,
+original HEMP_PRIMARY six-channel order and sample-SD normalization.
+
 # Full private WXF HODMD spectral replay — 17 October 2026
 
 The original REF & HEMP Phase-4 HODMD transient script has not been found.

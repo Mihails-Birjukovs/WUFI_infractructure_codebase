@@ -1,3 +1,8 @@
+**Update (17 October 2026):** This initial rule-recovery study has been
+superseded by the complete 112-row numerical reproduction. See
+HODMD_COMPLETE_NUMERICAL_REPRODUCTION.md. The historical hypotheses and
+search steps below remain as an audit trail.
+
 # Phase-4 HODMD original-rule recovery: auditable constraints and candidates
 
 The original HODMD script is still missing. This branch deliberately avoids
