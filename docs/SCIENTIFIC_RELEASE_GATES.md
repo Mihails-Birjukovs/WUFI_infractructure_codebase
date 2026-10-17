@@ -122,3 +122,8 @@ accepted**. The lost original script and exact source provenance are **not
 recovered**, and the 480-fit complex paper-style reference remains distinct
 and partially reproduced. This was retrospective, not blind independent
 threshold selection. See docs/HODMD_COMPLETE_NUMERICAL_REPRODUCTION.md.
+
+
+## Fresh committed-source acceptance, 18 October 2026
+
+The **exact** committed Python source and pvlib==0.16.1 wheel were SHA-256-verified and used locally with the original private Drive WXFs, WAC and solar audit. All **112/112** original HODMD numerical rows passed. The full 17,520-hour **actual pvlib** WAC replay is now completed: 17,517 radiation rows and all non-radiation fields match strictly, with three documented near-horizon gap differences up to 0.215687258 W/m². **Strict WAC parity remains failed**; a three-gap-only scientific exception needs independent approval. The temporary public-dependency PR was closed unmerged. See `docs/REF_HEMP_ACCEPTANCE_2026_10_18.md`.
