@@ -1,0 +1,39 @@
+name: Temporary offline science dependency bundle
+on:
+  pull_request:
+    branches: [WUFI_python_tools]
+    paths:
+      - '.github/workflows/acceptance-dependency-export.yml'
+permissions:
+  contents: read
+jobs:
+  export-public-source-and-pvlib-wheel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Download publicly distributed pvlib wheel
+        run: |
+          mkdir -p offline_bundle
+          python -m pip download --no-deps --dest offline_bundle pvlib==0.16.1
+          sha256sum offline_bundle/*.whl > offline_bundle/pvlib_wheel.sha256
+      - name: Stage unchanged versioned public scientific source
+        run: |
+          mkdir -p offline_bundle/python_tools
+          cp python_tools/__init__.py offline_bundle/python_tools/
+          cp python_tools/hodmd_historical_replay.py offline_bundle/python_tools/
+          cp python_tools/hodmd_rule_recovery.py offline_bundle/python_tools/
+          cp python_tools/replay_phase4_multiscale.py offline_bundle/python_tools/
+          cp python_tools/wxf_subset.py offline_bundle/python_tools/
+          cp python_tools/wac_from_audit.py offline_bundle/python_tools/
+          cp python_tools/replay_wac_reference.py offline_bundle/python_tools/
+          sha256sum offline_bundle/python_tools/*.py > offline_bundle/public_source.sha256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: offline-refhemp-public-dependencies
+          path: offline_bundle/
+          retention-days: 1
+          if-no-files-found: error
