@@ -57,6 +57,7 @@ python -m python_tools.examples.run_modal_example --out-dir demo_outputs
 - [HODMD original-rule recovery and full-spectrum diagnostics](docs/HODMD_RULE_RECOVERY.md)
 - [Private original-WXF HODMD 84-group spectral replay and sample-SD recovery](docs/HODMD_PRIVATE_SPECTRAL_REPLAY.md)
 - [Complete 112-record historical HODMD numerical reproduction](docs/HODMD_COMPLETE_NUMERICAL_REPRODUCTION.md)
+- [Fresh 18 October 2026 private-data acceptance: HODMD PASS; WAC full pvlib replay, three source-gap exceptions](docs/REF_HEMP_ACCEPTANCE_2026_10_18.md)
 - [HODMD independent daily-mode check](docs/HODMD_REFHEMP_REPLAY.md)
 - [Scientific input SHA-256 manifests and release gates](docs/SCIENTIFIC_RELEASE_GATES.md)
 
