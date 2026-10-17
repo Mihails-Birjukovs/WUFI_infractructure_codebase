@@ -19,7 +19,7 @@ def test_sample_sd_and_strict_embedding_rank():
     a,b=standardized_pair(z,2*z+1)
     np.testing.assert_allclose(a.std(axis=1,ddof=1),1.,atol=1e-13)
     np.testing.assert_allclose(b.std(axis=1,ddof=1),2.,atol=1e-13)
-    modes,fits=spectrum(a,delays=(12,),ranks=(4,12,24))
+    modes,fits=spectrum(a,delays=(12,),ranks=(2,4,24))
     assert len(fits)==3
     assert fits[-1]["fit_status"]=="excluded_embedding"
     assert any(abs(m["period_h"]-24)<1e-4 for m in modes)
