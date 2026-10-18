@@ -1,0 +1,31 @@
+[project]
+site_name = "WUFI Infrastructure | Tools & Reproducibility"
+site_url = "https://mihails-birjukovs.github.io/WUFI_infractructure_codebase/"
+site_description = "Documented Mathematica WUFI automation and Python climate and system-identification tools"
+site_author = "Mihails Birjukovs"
+copyright = "Copyright © 2026 Mihails Birjukovs · MIT-licensed source; scientific data and third-party software excluded"
+docs_dir = "site_docs"
+site_dir = "site"
+extra_css = ["stylesheets/wufi.css"]
+nav = [
+  { "Home" = "index.md" },
+  { "Getting started" = "getting-started.md" },
+  { "Architecture" = "architecture.md" },
+  { "Mathematica tools" = "mathematica.md" },
+  { "Python tools" = "python.md" },
+  { "WAC climate preparation" = "climate.md" },
+  { "Multiscale and modal analysis" = "modal.md" },
+  { "Validation and release gates" = "validation.md" },
+  { "Scientific data and provenance" = "data-provenance.md" },
+  { "Source reference" = "source-reference.md" },
+  { "Contributing" = "contributing.md" },
+  { "Licensing and credits" = "licensing.md" }
+]
+
+[project.theme]
+features = ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.top", "toc.follow"]
+
+[project.theme.palette]
+scheme = "default"
+primary = "custom"
+accent = "custom"
