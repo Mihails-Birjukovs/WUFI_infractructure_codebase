@@ -1,0 +1,6 @@
+# Historical science reference environment: Python 3.13.5
+numpy==2.3.5
+pandas==2.2.3
+scipy==1.17.0
+pvlib==0.16.1
+pytest>=8
