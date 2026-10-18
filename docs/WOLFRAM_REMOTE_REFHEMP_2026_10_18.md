@@ -1,5 +1,8 @@
 # REF/HEMP — Wolfram 15/Linux source and archive verification (18 October 2026)
 
+> **Archive clarification (18 October 2026):** The earlier v1.2.0 `Output_v1_2_Run1.7z` comparison was an **RC1** candidate with 155 recorded nested graphics failures and only 68/99 expected JPEGs, not a clean final-production five-case run. Subsequent RC2/RC3 five-case archives meet 11/13 independently mirrored equivalence conditions, failing only the literal Production-v1.2.0 module version identifiers. The separate *final production* run contains **two wall cases**, not the five cases stipulated by the frozen 13-gate script. See [archived-run provenance and gate audit](WOLFRAM_ARCHIVED_EQUIVALENCE_GATES_2026_10_18.md). The original 13-test Wolfram equivalence script remains unexecuted remotely.
+
+
 **Tested production source:** GitHub Mathematica branch at commit `c3ba01045d754903d276ddb320026851ac85e54b`.
 **Environment:** connected Wolfram Language 15.0.1 Linux kernel, stateless between evaluations, with **zero usable parallel subkernels**.
 
