@@ -1,0 +1,25 @@
+name: Temporary Phase F public source bundle
+on:
+  pull_request:
+    branches: [WUFI_python_tools]
+    paths: ['.github/workflows/temp-phase-f-source.yml']
+permissions:
+  contents: read
+jobs:
+  export-code:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          mkdir -p exact_source
+          cp -r python_tools exact_source/
+          cp requirements-scientific-validation.txt exact_source/
+          find exact_source -type d -name '__pycache__' -prune -exec rm -rf {} +
+          (cd exact_source && find . -type f -print0 | sort -z | xargs -0 sha256sum > sha256_manifest.txt)
+          echo "$GITHUB_SHA" > exact_source/git_checkout_commit.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: phase-f1-exact-public-source
+          path: exact_source/
+          retention-days: 1
