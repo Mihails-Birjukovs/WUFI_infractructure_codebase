@@ -36,7 +36,7 @@ def vapor_pressure_scenario(T,RH,temperature_offset_C=.3,rh_offset_percentage_po
     return ref,lo,hi
 
 def calibration_scenario(frame,temperature_offset_C=.3,rh_offset_percentage_points=2.):
-    pv,lo,hi=vapor_pressure_scenario(frame.T,frame.RH,temperature_offset_C,rh_offset_percentage_points)
+    pv,lo,hi=vapor_pressure_scenario(frame["T"],frame["RH"],temperature_offset_C,rh_offset_percentage_points)
     return {"uncertainty_certified":False,"assumed_temperature_offset_C":temperature_offset_C,
       "assumed_RH_offset_pp":rh_offset_percentage_points,
       "median_pv_fullwidth_Pa":float(np.median(hi-lo)),

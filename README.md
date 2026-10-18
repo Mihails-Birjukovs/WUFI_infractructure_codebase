@@ -59,6 +59,7 @@ python -m python_tools.examples.run_modal_example --out-dir demo_outputs
 - [Complete 112-record historical HODMD numerical reproduction](docs/HODMD_COMPLETE_NUMERICAL_REPRODUCTION.md)
 - [Fresh 18 October 2026 private-data acceptance: HODMD PASS; WAC full pvlib replay, three source-gap exceptions](docs/REF_HEMP_ACCEPTANCE_2026_10_18.md)
 - [Pre-WUFI scientific verification Phases A–D](docs/REF_HEMP_PHASES_A_D_2026_10_18.md)
+- [Further scientific validation: calibration scenarios, HODMD surrogates and recursive DMDc](docs/REF_HEMP_PHASE_E_2026_10_18.md)
 - [Pre-WUFI scientific release gates](docs/REF_HEMP_RELEASE_GATES.md)
 - [HODMD independent daily-mode check](docs/HODMD_REFHEMP_REPLAY.md)
 - [Scientific input SHA-256 manifests and release gates](docs/SCIENTIFIC_RELEASE_GATES.md)
