@@ -1,0 +1,83 @@
+name: Verify and publish WUFI documentation
+
+on:
+  pull_request:
+    branches: [WUFI_mathematica_tools]
+    paths:
+      - "site_docs/**"
+      - "zensical.toml"
+      - "scripts/validate_site_docs.py"
+      - ".github/workflows/documentation-site.yml"
+      - "docs/DOCUMENTATION_SITE.md"
+  push:
+    branches: [WUFI_mathematica_tools]
+    paths:
+      - "site_docs/**"
+      - "zensical.toml"
+      - "scripts/validate_site_docs.py"
+      - ".github/workflows/documentation-site.yml"
+      - "docs/DOCUMENTATION_SITE.md"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: wufi-docs-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Allowlist audit and strict site build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out reviewed source
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+          lfs: false
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Pin Zensical build tool
+        run: python -m pip install "zensical==0.0.71"
+      - name: Audit public content
+        run: python scripts/validate_site_docs.py
+      - name: Build with warnings treated as errors
+        run: zensical build --clean --strict
+      - name: Upload site artifact (not deployed on PR)
+        uses: actions/upload-artifact@v4
+        with:
+          name: wufi-reviewed-docs
+          path: site/
+          if-no-files-found: error
+          retention-days: 7
+
+  deploy:
+    name: Publish reviewed default-branch site
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/WUFI_mathematica_tools'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+    steps:
+      - name: Download reviewed build
+        uses: actions/download-artifact@v4
+        with:
+          name: wufi-reviewed-docs
+          path: site/
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
