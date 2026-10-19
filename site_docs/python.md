@@ -1,6 +1,6 @@
 # Python climate and diagnostic tools
 
-The [WUFI Python branch](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/tree/WUFI_python_tools) contains standalone analysis tools; it does not bundle the Mathematica production packages. Its README and per-module source are authoritative for the interface in your selected commit.
+The **Python tools branch was contributed by Mihails Birjukovs and Valters Ribickis**. The [WUFI Python branch](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/tree/WUFI_python_tools) contains standalone analysis tools; it does not bundle the Mathematica production packages. Its README and per-module source are authoritative for the interface in your selected commit.
 
 ## Set up and test
 
@@ -43,3 +43,7 @@ Do not run synthetic WAC data through a real REF/HEMP model as production forcin
 - [Archival reproduction catalog](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/blob/WUFI_python_tools/README.md)
 
 For interpretation and release gates, see [validation](validation.md) and [modal diagnostics](modal.md).
+
+## Research citations and contributor credit
+
+See [Credits & contributors](credits.md) for software and instrumentation roles and [Research & references](references.md) for the [pvlib project's preferred paper](https://doi.org/10.21105/joss.05994), the Erbs irradiance model, and the original DMD/HODMD/DMDc method papers. Method citations do not imply that code from their authors was imported.
