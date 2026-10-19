@@ -30,7 +30,7 @@ APPROVED = {
     "licensing.md",
     "credits.md",
     "references.md",
-    "stylesheets/wufi.css",
+    "stylesheets/inm-wufi-20261020.css",
     "assets/inm-horizontal.svg",
     "assets/inm-mark.svg",
     "assets/inm-square-footer.svg",
