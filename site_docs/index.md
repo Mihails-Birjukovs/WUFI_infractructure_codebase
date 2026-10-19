@@ -12,9 +12,8 @@
 <img class="wufi-brand-mark" src="assets/inm-horizontal.svg" alt="Institute of Numerical Modelling, University of Latvia" />
 
 <div class="wufi-identity">
-  <div><small>Mathematica infrastructure</small><strong>Mihails Birjukovs</strong><br />Institute of Numerical Modelling (INM), University of Latvia</div>
-  <div><small>Python toolchain</small><strong>Mihails Birjukovs &amp; Valters Ribickis</strong><br />Climate, multiscale and modal analysis tools</div>
-  <div><small>Research measurement contributions</small><strong>Jevgēnijs Teličko · Māris Šinka · Piotr Lapka</strong><br />Monitoring infrastructure and laboratory material measurements</div>
+  <div><small>Software &amp; documentation · INM</small><strong>Mihails Birjukovs</strong><br />Mathematica tools; Python tools with Valters Ribickis<br />Institute of Numerical Modelling, University of Latvia</div>
+  <div><small>Experimental measurements &amp; credit</small><strong>Jevgēnijs Teličko · Māris Šinka · Piotr Lapka</strong><br />Sensor data and network; sensor installation; material-property laboratory measurements</div>
 </div>
 
 **WUFI infrastructure and research software documentation.** This site documents published code from the [WUFI infrastructure GitHub repository](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase). It is not a substitute for licensed WUFI Pro, independently verified instrumentation, original monitoring data, or the research manuscript.
