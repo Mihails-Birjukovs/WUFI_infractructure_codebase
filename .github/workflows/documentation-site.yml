@@ -7,6 +7,7 @@ on:
       - "site_docs/**"
       - "zensical.toml"
       - "scripts/validate_site_docs.py"
+      - "scripts/check_site_style.py"
       - ".github/workflows/documentation-site.yml"
       - "docs/DOCUMENTATION_SITE.md"
   push:
@@ -47,6 +48,8 @@ jobs:
         run: python scripts/validate_site_docs.py
       - name: Build with warnings treated as errors
         run: zensical build --clean --strict
+      - name: Check generated site styling and relative asset paths
+        run: python scripts/check_site_style.py
       - name: Upload site artifact (not deployed on PR)
         uses: actions/upload-artifact@v4
         with:
