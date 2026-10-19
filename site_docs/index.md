@@ -1,31 +1,47 @@
-# WUFI Infrastructure
+<section class="wufi-hero" aria-label="WUFI infrastructure documentation">
+  <div class="wufi-eyebrow">Hygrothermal simulation · Research software · Mathematica &amp; Python</div>
+  <h1>WUFI Infrastructure</h1>
+  <p>Reproducible WUFI Pro batch automation, sensor comparisons, site-climate preparation and multiscale/modal diagnostics for hygrothermal research.</p>
+  <div class="wufi-actions">
+    <a class="wufi-link wufi-link-primary" href="getting-started.md">Get started</a>
+    <a class="wufi-link" href="architecture.md">Explore the workflow</a>
+    <a class="wufi-link" href="references.md">Methods &amp; references</a>
+  </div>
+</section>
 
-**Research software infrastructure for WUFI Pro automation, measured-sensor comparison, climate-file preparation and time-series diagnostics.**
+<img class="wufi-brand-mark" src="assets/inm-horizontal.svg" alt="Institute of Numerical Modelling, University of Latvia" />
 
-This site documents code published in [WUFI_infractructure_codebase](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase). It is **software documentation**, not a substitute for licensed WUFI, original monitoring data, validated physics, or the underlying research article.
+<div class="wufi-identity">
+  <div><small>Mathematica infrastructure</small><strong>Mihails Birjukovs</strong><br />Institute of Numerical Modelling (INM), University of Latvia</div>
+  <div><small>Python toolchain</small><strong>Mihails Birjukovs &amp; Valters Ribickis</strong><br />Climate, multiscale and modal analysis tools</div>
+  <div><small>Research measurement contributions</small><strong>Jevgēnijs Teličko · Māris Šinka · Piotr Lapka</strong><br />Monitoring infrastructure and laboratory material measurements</div>
+</div>
+
+**WUFI infrastructure and research software documentation.** This site documents published code from the [WUFI infrastructure GitHub repository](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase). It is not a substitute for licensed WUFI Pro, independently verified instrumentation, original monitoring data, or the research manuscript.
 
 ## Two maintained toolchains
 
-| Wolfram Mathematica: production workflow | Python: climate and diagnostics |
+| Wolfram Mathematica: simulation and comparison | Python: climate and diagnostics |
 | --- | --- |
-| WUFI batch launcher v1.0; ASC post-processor v1.1.1; sensor comparison v1.2.0 | pvlib-based WAC generation; multiscale diagnostics; DMD, delay/HODMD and DMDc references |
-| [Mathematica branch](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/tree/WUFI_mathematica_tools) — repository default | [Python branch](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/tree/WUFI_python_tools) |
-| Historical acceptance archives and source-controlled tools | Synthetic CI plus separately documented private-data numerical replay |
-| Windows + WUFI Pro + Wolfram Mathematica | Python 3.10+ and project requirements |
+| WUFI batch launcher v1.0, ASC post-processor v1.1.1, sensor comparison v1.2.0 | `pvlib`-based WAC generation, multiscale diagnostics, exact/delay DMD and DMDc reference methods |
+| [Mathematica branch](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/tree/WUFI_mathematica_tools) (repository default) | [Python branch](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/tree/WUFI_python_tools) |
+| Accepted historical release archives, original WUFI/WXF toolchain | Synthetic CI with qualified historical numerical replay evidence |
+| Windows, licensed WUFI Pro, Mathematica | Python environment with installed branch requirements |
 
-**The branches are deliberately different working trees. Do not merge them to combine the tools.** Follow [the documented coordination boundary](contributing.md).
+**These branches are intentionally separate working trees and must not be merged.** See the [contribution policy](contributing.md).
 
-## Start with evidence, not claims
+## Start here
 
-- [Get started](getting-started.md) with a safe, isolated workspace.
-- [Understand the pipeline](architecture.md) and the two branches.
-- Use the [Mathematica walkthrough](mathematica.md) to generate manifests, post-process ASC and compare sensors.
-- Use the [Python walkthrough](python.md) with **synthetic fixtures** before authorized measured data.
-- Check the [validation matrix](validation.md) before citing equivalence or interpreting scientific results.
-- Read [scientific data and rights limitations](data-provenance.md) before distributing outputs.
+- [Install and set up](getting-started.md) a separate research workspace.
+- [Follow the data flow](architecture.md) from weather and sensor inputs through WUFI outputs.
+- [Use the Mathematica tools](mathematica.md) for batch execution, post-processing and sensor comparison.
+- [Explore Python tools](python.md) using synthetic examples before authorized observations.
+- [Review validation scope](validation.md) before interpreting numerical agreement.
+- [Credit and cite the methods](references.md), [software and measurement contributors](credits.md).
+- [Understand restricted data rights and provenance](data-provenance.md).
 
-## Publication boundary
+## Software, instrumentation and scientific interpretation
 
-The public repository does **not** distribute WUFI Pro, private REF/HEMP sensor histories, raw MongoDB collections, calibration projects, original WAC audit files, unpublished article figures, or protected third-party material. The independently audited scientific campaign remains in its authorized archive. A passing unit test or documentation build does not prove physical model validity.
+The code repository is public; raw MongoDB sensor exports, calibrated WUFI projects, private experiment results, manuscript figures and proprietary software are **not redistributed** here. Physical sensor identity, solar-instrument measurement plane and heat-flow provenance remain distinct from successful numerical reproduction.
 
-**Documentation status:** proposed website, versioned with the authoritative Mathematica branch; site deployment requires a reviewed pull request and GitHub Pages acceptance.
+<div class="wufi-credit-strip"><strong>Institutional affiliation:</strong> Institute of Numerical Modelling (INM), University of Latvia. Code credits and experimental contributors are separated on the <a href="credits.md">Credits &amp; contributors</a> page. The INM mark is institutional artwork, not MIT-licensed software.</div>
