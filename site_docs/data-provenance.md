@@ -34,3 +34,7 @@ A database solar_radiation stream was modelled as GHI for WAC reconstruction, bu
 6. Never publish raw observations, licensed WUFI project bundles or report graphics through this public documentation pipeline without specific rights and scientific approval.
 
 Scientific investigation and article preparation are maintained in a dedicated modelling workspace; this repository's documentation reflects only verified tooling, reproducibility contracts and known limitations.
+
+## Contribution provenance
+
+Sensor-network management/MongoDB curation are credited to **Jevgēnijs Teličko**; physical sensor installation and maintenance to **Māris Šinka**; laboratory material-property measurements to **Piotr Lapka**. These role acknowledgements are not substitutes for physical logger maps, calibration records or data-release permissions. The Mathematica and Python software contributors are listed separately on [Credits & contributors](credits.md).

@@ -21,7 +21,7 @@
 
 ## Public site safety model
 
-This site has a fail-closed exact-file allowlist, symlink guard, blocked binary/data suffixes, path checks and simple credential heuristics. Automated scanning does not replace human privacy or rights review. No unpublished report graphics, raw MongoDB dumps, protected material-testing tables or institutional logos are copied.
+This site has a fail-closed exact-file allowlist, symlink guard, blocked binary/data suffixes, path checks and simple credential heuristics. Automated scanning does not replace human privacy or rights review. No unpublished report graphics, raw MongoDB dumps or protected material-testing tables are copied. The only institutional visual assets are three precisely pinned INM SVGs reused from the maintainer's existing OOC website; their rights are separate from MIT.
 
 The build uses read-only permissions and no retained checkout credentials. Deployment permissions are limited to the default-branch GitHub Pages job, not PR validation.
 

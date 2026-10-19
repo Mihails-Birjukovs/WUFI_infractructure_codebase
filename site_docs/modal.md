@@ -55,3 +55,7 @@ Here x/u are aligned **(samples, variables)** arrays. Source-WXF refits reproduc
 The private historical analyses have extensive independent numerical replay, including the 112-row HODMD stability study, but with reconstructed parameter rules and not an original lost implementation. Claims must identify exactly **what is compared**: output values, selection predicates, archival WXF data, current Python source or a fresh WUFI run.
 
 See [Python source provenance](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/blob/WUFI_python_tools/docs/PROVENANCE.md), [HODMD results](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/blob/WUFI_python_tools/docs/HODMD_COMPLETE_NUMERICAL_REPRODUCTION.md), and [DMDc replay](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/blob/WUFI_python_tools/docs/DMDc_COMPLETE_NUMERICAL_REPRODUCTION.md).
+
+## Method attribution
+
+The local routines are **separate Python reference implementations**, not third-party DMD packages. Credit [Schmid (2010)](https://doi.org/10.1017/S0022112010001217) and [Tu et al. (2014)](https://doi.org/10.3934/jcd.2014.1.391) for DMD, [Le Clainche & Vega (2017)](https://doi.org/10.1137/15M1054924) for HODMD, and [Proctor, Brunton & Kutz (2016)](https://doi.org/10.1137/15M1013857) for DMDc. Full verified references and implementation-scope distinctions appear in [Research & references](references.md).

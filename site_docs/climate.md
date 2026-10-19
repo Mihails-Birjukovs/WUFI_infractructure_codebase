@@ -35,3 +35,7 @@ Daylight gaps require a scientifically justified reconstruction policy. Full-rec
 [Source module](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/blob/WUFI_python_tools/python_tools/wac_from_audit.py) · [full replay notes](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/blob/WUFI_python_tools/docs/WAC_FULL_REPLAY.md).
 
 **No private raw data or report illustrations are distributed from this site.**
+
+## Citations
+
+Credit [pvlib's preferred Anderson et al. (2023) JOSS project citation](https://doi.org/10.21105/joss.05994) for the Python library, and [Erbs, Klein & Duffie (1982)](https://doi.org/10.1016/0038-092X(82)90302-4) for the diffuse-fraction correlation. See [Research & references](references.md) for complete bibliography and caveats.

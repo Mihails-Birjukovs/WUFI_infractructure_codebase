@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
-"""Fail-closed validation of curated, PUBLIC WUFI Zensical content.
+"""Fail-closed validator for published WUFI documentation.
 
-A passing scan is not scientific, privacy, trademark or copyright approval.
-Do not recursively publish original reports, raw sensor data, WXF, WUFI models,
-licensed third-party files, external images or unpublished experimental data.
+This is a machine guard, not a substitute for scientific or rights review.
+Three institutional assets are byte-frozen copies of artwork in the
+same maintainer's existing OOC documentation site; not MIT-licensed.
 """
 from __future__ import annotations
 
 from pathlib import Path
+import hashlib
 import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "site_docs"
 
-# Deliberate exact publication manifest: add a file only in a reviewed PR.
 APPROVED = {
     "index.md",
     "getting-started.md",
@@ -28,7 +28,18 @@ APPROVED = {
     "source-reference.md",
     "contributing.md",
     "licensing.md",
+    "credits.md",
+    "references.md",
     "stylesheets/wufi.css",
+    "assets/inm-horizontal.svg",
+    "assets/inm-mark.svg",
+    "assets/inm-square-footer.svg",
+}
+# Original Git blob SHAs from OOC_Particles_Velocimetry_Docs/main.
+APPROVED_INM_BLOBS = {
+    "assets/inm-horizontal.svg": "33938b2a9a6ae442b3ede153fb79187a31040a68",
+    "assets/inm-mark.svg": "b3a5154d96b0daf24cd44711fa13980689119287",
+    "assets/inm-square-footer.svg": "327ffd7d447e8475e4c8f0e0d0fa68f465be841b",
 }
 BLOCKED_SUFFIXES = {
     ".csv", ".json", ".jsonl", ".7z", ".zip", ".wxf", ".mx",
@@ -55,13 +66,21 @@ def validate() -> None:
             continue
         name = path.relative_to(DOCS).as_posix()
         actual.add(name)
-        if path.suffix.lower() in BLOCKED_SUFFIXES:
+        is_logo = name in APPROVED_INM_BLOBS
+        if path.suffix.lower() in BLOCKED_SUFFIXES and not is_logo:
             raise ValueError(f"Data/binary artifact forbidden: {name}")
-        if path.suffix.lower() not in {".md", ".css"}:
+        if path.suffix.lower() not in {".md", ".css"} and not is_logo:
             raise ValueError(f"Unreviewed extension: {name}")
-        if path.stat().st_size > 100_000:
-            raise ValueError(f"Unexpected oversized page: {name}")
-        raw = path.read_text(encoding="utf-8")
+        payload = path.read_bytes()
+        if len(payload) > 100_000:
+            raise ValueError(f"Oversized site asset: {name}")
+        if is_logo:
+            git_blob = hashlib.sha1(
+                f"blob {len(payload)}\0".encode("ascii") + payload
+            ).hexdigest()
+            if git_blob != APPROVED_INM_BLOBS[name]:
+                raise ValueError(f"Modified/unapproved institutional artwork: {name}")
+        raw = payload.decode("utf-8")
         for pattern in PRIVATE_PATTERNS:
             if pattern.search(raw):
                 raise ValueError(f"Possible private string/credential: {name}, {pattern.pattern}")
@@ -72,7 +91,7 @@ def validate() -> None:
             "Site files differ from approved publication manifest: "
             f"added={sorted(actual - APPROVED)} missing={sorted(APPROVED - actual)}"
         )
-    print(f"PASS: exactly {len(APPROVED)} publication-allowlisted public website files")
+    print(f"PASS: exact {len(APPROVED)} public files, 3 pinned INM SVGs")
 
 
 if __name__ == "__main__":

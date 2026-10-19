@@ -1,6 +1,6 @@
 # Documentation site architecture, acceptance and rights record
 
-**Status (2026-10-19): staged for PR; NOT YET MERGED, DEPLOYED OR VISUALLY ACCEPTED.**
+**Initial site published (2026-10-19), with GitHub Actions run #39230210306 attempt 2 successful after Pages initialization. Visual QA not independently completed. Subsequent INM-style and credits update is staged as a separate PR, pending owner review.**
 
 ## Protocol and architecture
 
@@ -12,7 +12,7 @@ The maintained source worktrees remain **WUFI_mathematica_tools (default)** and 
 
 ## Components
 
-- site_docs/ — 12 specifically selected Markdown pages and one authored CSS file; no report graphics or private data.
+- site_docs/ — 14 explicitly selected Markdown pages, one stylesheet, and three byte-pinned INM SVG assets reused from the OOC docs site; no report graphics or private data.
 - zensical.toml — curated navigation, full Pages subpath and presentation settings.
 - scripts/validate_site_docs.py — fail-closed exact content manifest, symlink/type/private-path and simple credential checks.
 - .github/workflows/documentation-site.yml — PR build/validation only; reviewed default-branch pushes deploy.
@@ -41,10 +41,16 @@ Site source snapshot should be updated by PR when branch sources evolve. No auto
 
 Repository Settings → Pages → Build and deployment → GitHub Actions (verify account entitlement and repo policy). Actions must be enabled. After a reviewed merge, confirm the actual deployment action, site URL and served version; inspect in a browser. The workflow will not deploy PR heads or workflow-dispatch runs.
 
-Site content is a public software/method summary: it never copies the raw MongoDB observations, licensed .w6p projects, WXF archives, external partner reports or unpublished scientific figures. No institutional logos are used. The text references a private report for provenance, but grants no rights to publish its content. Machine scanning cannot substitute human scientific/rights review.
+Site content is a public software/method summary: it never copies the raw MongoDB observations, licensed .w6p projects, WXF archives, external partner reports or unpublished scientific figures. Only the three already-public, same-maintainer OOC INM identity logos are reused and pinned by their source Git blob hashes; their marks remain outside the MIT software license. The text references a private report for provenance, but grants no rights to publish its content. Machine scanning cannot substitute human scientific/rights review.
 
 ## Maintenance/report-back
 
 Use WUFI_mathematica_tools for Mathematica/tool docs and the site; WUFI_python_tools for Python sources. Avoid PRs that merge their distinct trees. Changes requested by Hygrothermal Modelling Copilot should be returned to the infrastructure maintenance chat with issue, branch and commit, input/test fixtures, expected vs actual behavior, numerical compatibility and regression results.
 
 When ready, record both branch source commits, the site publishing commit, rights sign-off, PR, CI artifacts, Pages URL and browser QA in this record or a versioned release note.
+
+## INM visual identity and credits update (2026-10-20)
+
+The style is harmonized with the maintainer's published OOC documentation site: white header with orange accent, navy navigation, dark hero, tab structure, highlighted identity/credit strip, table/blockquote treatments, and accessible footer/copyright contrast. The same three INM SVGs (header logo, favicon and square footer badge) were copied byte-for-byte from OOC and are individually verified against exact source Git blob hashes. A future update to either set requires independent rights and appearance review; no general SVG publishing permission was introduced.
+
+Added contributor credits for software, MongoDB network/data management, sensor installation, and material lab measurement. Added paper-level references for pvlib (current recommended 2023 JOSS and 2018 historical), Erbs (1982), DMD (Schmid 2010/Tu et al. 2014), HODMD (Le Clainche & Vega 2017), and DMDc (Proctor et al. 2016). Citations distinguish actual library use from locally reconstructed/new source implementations.

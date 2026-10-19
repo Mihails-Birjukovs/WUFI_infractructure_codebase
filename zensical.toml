@@ -1,29 +1,46 @@
 [project]
 site_name = "WUFI Infrastructure | Tools & Reproducibility"
 site_url = "https://mihails-birjukovs.github.io/WUFI_infractructure_codebase/"
-site_description = "Documented Mathematica WUFI automation and Python climate and system-identification tools"
-site_author = "Mihails Birjukovs"
-copyright = "Copyright © 2026 Mihails Birjukovs · MIT-licensed source; scientific data and third-party software excluded"
+site_description = "WUFI infrastructure · INM software, experimental provenance and methodological references"
+site_author = "Mihails Birjukovs · Institute of Numerical Modelling, University of Latvia"
+copyright = "Copyright © 2026 Mihails Birjukovs · INM, University of Latvia · Institutional logos excluded from the MIT license"
 docs_dir = "site_docs"
 site_dir = "site"
 extra_css = ["stylesheets/wufi.css"]
 nav = [
   { "Home" = "index.md" },
-  { "Getting started" = "getting-started.md" },
-  { "Architecture" = "architecture.md" },
-  { "Mathematica tools" = "mathematica.md" },
-  { "Python tools" = "python.md" },
-  { "WAC climate preparation" = "climate.md" },
-  { "Multiscale and modal analysis" = "modal.md" },
-  { "Validation and release gates" = "validation.md" },
-  { "Scientific data and provenance" = "data-provenance.md" },
-  { "Source reference" = "source-reference.md" },
-  { "Contributing" = "contributing.md" },
-  { "Licensing and credits" = "licensing.md" }
+  { "Getting started" = [
+    "getting-started.md",
+    "architecture.md",
+    "mathematica.md",
+    "python.md",
+  ] },
+  { "Processing methods" = [
+    "climate.md",
+    "modal.md",
+  ] },
+  { "Validation" = "validation.md" },
+  { "Scientific data & provenance" = "data-provenance.md" },
+  { "Research & references" = "references.md" },
+  { "Credits & contributors" = "credits.md" },
+  { "Source & contributing" = [
+    "source-reference.md",
+    "contributing.md",
+  ] },
+  { "Licensing" = "licensing.md" },
 ]
 
 [project.theme]
-features = ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.top", "toc.follow"]
+logo = "assets/inm-horizontal.svg"
+favicon = "assets/inm-mark.svg"
+features = [
+  "navigation.instant",
+  "navigation.tracking",
+  "navigation.tabs",
+  "navigation.sections",
+  "toc.follow",
+  "navigation.top",
+]
 
 [project.theme.palette]
 scheme = "default"
