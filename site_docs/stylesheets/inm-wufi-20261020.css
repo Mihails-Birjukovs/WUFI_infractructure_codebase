@@ -1,0 +1,152 @@
+/* WUFI scientific documentation · immutable 2026-10-20 stylesheet URL · Institute of Numerical Modelling visual identity.
+   Consistent with the user's OOC documentation site, itself adapted from INM styling.
+   INM institutional logo assets are excluded from the MIT software license. */
+:root, [data-md-color-scheme="default"] {
+  --inm-blue: #004b8e;
+  --inm-navy: #1c3854;
+  --inm-orange: #f47b20;
+  --inm-slate: #edf3f6;
+  --inm-paper: #ffffff;
+  --md-primary-fg-color: #1c3854;
+  --md-primary-fg-color--light: #365672;
+  --md-primary-fg-color--dark: #112940;
+  --md-accent-fg-color: #ce5e08;
+  --md-typeset-a-color: #00528b;
+}
+.md-header {
+  background: #fff;
+  color: var(--inm-navy);
+  border-bottom: 3px solid var(--inm-orange);
+  box-shadow: 0 1px 12px rgba(11,37,57,.09);
+}
+.md-header__title, .md-header__button { color: var(--inm-navy); }
+.md-header__button.md-logo { margin: .1rem .35rem .1rem 0; padding: 0; }
+.md-header__button.md-logo img, .md-logo img { width: 152px; height: 54px; max-height: none; object-fit: contain; }
+.md-tabs { background: var(--inm-navy); }
+.md-typeset h1, .md-typeset h2, .md-typeset h3 { color: var(--inm-navy); font-weight: 700; }
+.md-typeset h2 { border-bottom: 2px solid #e5edf1; padding-bottom: .35em; }
+.md-typeset h2::before { content: ""; display: inline-block; height: .8em; width: .16em; margin-right: .45em; background: var(--inm-orange); border-radius: 2px; }
+.md-typeset a { text-underline-offset: 2px; }
+.md-typeset a:focus-visible { outline: 3px solid var(--inm-orange); outline-offset: 3px; }
+.md-typeset table:not([class]) { box-shadow: none; border: 1px solid #d9e5eb; border-radius: 4px; overflow: hidden; }
+.md-typeset table:not([class]) th { background: var(--inm-navy); color: #fff; font-weight: 600; }
+.md-typeset table:not([class]) tbody tr:nth-child(even) { background: var(--inm-slate); }
+.md-typeset blockquote { border-left: .18rem solid var(--inm-orange); background: #f5f8fa; padding: .6em 1em; }
+.md-typeset pre { border-left: 3px solid var(--inm-blue); border-radius: 5px; }
+.md-footer { background: var(--inm-navy); }
+.wufi-hero { background: linear-gradient(135deg, #1c3854 0%, #153149 100%); color: #fff; border-top: 6px solid var(--inm-orange); border-radius: 7px; padding: 2.4rem 2.2rem; margin: .7rem 0 1.25rem; }
+.wufi-hero h1, .wufi-hero p, .wufi-hero a { color: #fff; }
+.wufi-hero h1 { color:#fff; font-size: 2.35rem; margin: .4rem 0 .5rem; line-height: 1.16; }
+.wufi-hero .wufi-eyebrow { color: #ffba80; text-transform: uppercase; letter-spacing: .13em; font-size: .76rem; font-weight: 750; }
+.wufi-hero p { max-width: 45rem; opacity: .96; font-size: 1rem; }
+.wufi-hero .wufi-actions { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: 1.3rem; }
+.wufi-hero a.wufi-link { display:inline-block; padding: .55rem .95rem; border: 1px solid rgba(255,255,255,.62); border-radius: 4px; text-decoration: none; font-weight: 650; }
+.wufi-hero a.wufi-link-primary { background: var(--inm-orange); border-color: var(--inm-orange); color: #142c41; }
+.wufi-hero a.wufi-link:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+.wufi-identity { display: flex; gap: .75rem; align-items: flex-start; padding: 1rem 1.2rem; background: var(--inm-slate); border-top: 2px solid var(--inm-blue); border-radius: 4px; margin: 1rem 0; flex-wrap: wrap; }
+.wufi-identity > div { min-width: 230px; flex: 1; }
+.wufi-identity small { display: block; color: #376b86; font-weight: 750; letter-spacing: .04em; text-transform: uppercase; margin-bottom: .35rem; }
+.wufi-credit-strip { border-left: 3px solid var(--inm-orange); background: #f5f8fa; padding: .8rem 1rem; margin: 1.2rem 0; font-size: .87rem; }
+.wufi-brand-mark { display:block; max-width: 480px; width: 100%; margin: 1rem 0 .3rem; }
+@media (max-width: 650px) {
+ .wufi-hero { padding: 1.3rem 1rem; }
+ .wufi-hero h1 { font-size: 1.7rem; }
+ .md-header__button.md-logo img, .md-logo img { width: 86px; height: 32px; }
+}
+
+/* Legibility on dark-blue/navy surfaces: override dark theme descendants
+   while retaining dark navy lettering for the orange primary CTA. */
+.md-tabs,
+.md-tabs .md-tabs__link,
+.md-tabs .md-tabs__link:visited,
+.md-tabs .md-tabs__link:hover,
+.md-tabs .md-tabs__link:focus-visible {
+  color: #ffffff;
+}
+.md-tabs .md-tabs__link { opacity: .86; }
+.md-tabs .md-tabs__item--active .md-tabs__link,
+.md-tabs .md-tabs__link:hover,
+.md-tabs .md-tabs__link:focus-visible { opacity: 1; }
+.md-tabs .md-tabs__link:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+.md-typeset .wufi-hero,
+.md-typeset .wufi-hero :is(h1, h2, h3, h4, p, strong, span, small, li) {
+  color: #ffffff;
+}
+.md-typeset .wufi-hero .wufi-eyebrow { color: #ffba80; }
+.md-typeset .wufi-hero a:not(.wufi-link-primary),
+.md-typeset .wufi-hero a:not(.wufi-link-primary):visited { color: #ffffff; }
+.md-typeset .wufi-hero a.wufi-link-primary,
+.md-typeset .wufi-hero a.wufi-link-primary:visited { color: #142c41; }
+.md-typeset table:not([class]) thead th,
+.md-typeset table:not([class]) thead th :is(a, a:visited, strong, em, small, span, code) {
+  color: #ffffff;
+}
+.md-typeset table:not([class]) thead th code {
+  background: rgba(255,255,255,.13);
+}
+.md-typeset table:not([class]) thead th a {
+  text-decoration: underline;
+  text-underline-offset: .2em;
+}
+.md-typeset table:not([class]) thead th a:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+.md-footer, .md-footer a, .md-footer a:visited,
+.md-footer__title, .md-footer__direction,
+.md-footer-meta, .md-footer-meta a, .md-footer-meta a:visited,
+.md-footer-meta__inner { color: #ffffff; }
+.md-footer a:hover, .md-footer-meta a:hover { color: #ffd0a9; }
+.md-footer-meta { background: #142c41; border-top: 1px solid rgba(255,255,255,.2); }
+/* Footer-only secondary branding: unobtrusive right-aligned official
+   square INM image reused from the existing OOC documentation site.
+   It is decorative because the main header logo has an accessible label. */
+.md-footer-meta__inner {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .75rem 1rem;
+  min-height: 5.3rem;
+}
+.md-footer-meta__inner::after {
+  content: "";
+  display: block;
+  flex: 0 0 70px;
+  width: 70px;
+  height: 70px;
+  margin-left: auto;
+  border: 1px solid rgba(255,255,255,.4);
+  border-radius: 5px;
+  background: #ffffff url("../assets/inm-square-footer.svg") center / contain no-repeat;
+}
+@media (max-width: 650px) {
+  .md-footer-meta__inner::after { flex-basis: 54px; width: 54px; height: 54px; }
+}
+
+/* Zensical renders both the copyright and "Made with Zensical" notice inside
+   .md-copyright. Its own foreground and link rules do not inherit reliably
+   from .md-footer. The stronger selectors below fix that specific regression. */
+footer.md-footer .md-footer-meta .md-copyright,
+footer.md-footer .md-footer-meta .md-copyright__highlight,
+footer.md-footer .md-footer-meta .md-copyright :is(span, small, strong) {
+  color: #ffffff !important;
+  opacity: 1;
+}
+footer.md-footer .md-footer-meta .md-copyright a,
+footer.md-footer .md-footer-meta .md-copyright a:visited {
+  color: #ffffff !important;
+  text-decoration-color: rgba(255, 255, 255, .85);
+  text-underline-offset: 2px;
+}
+footer.md-footer .md-footer-meta .md-copyright a:hover,
+footer.md-footer .md-footer-meta .md-copyright a:focus-visible {
+  color: #ffd0a9 !important;
+  text-decoration-color: currentColor;
+}
+footer.md-footer .md-footer-meta .md-copyright a:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
