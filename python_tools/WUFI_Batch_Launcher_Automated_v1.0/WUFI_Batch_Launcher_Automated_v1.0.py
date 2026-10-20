@@ -4,6 +4,8 @@ import zipfile
 import xml.etree.ElementTree as ET
 import os
 import shutil
+import math
+import re
 
 # Folder containing the .w6p files
 
@@ -76,13 +78,63 @@ def extract_wufi_file(wufi_file):
     return temp_dir
 
 
+def xml_number(value):
+    """Read a finite WUFI number with either decimal separator."""
+    number = float(value.strip().replace(",", "."))
+    if not math.isfinite(number):
+        raise ValueError(f"Non-finite XML number: {value!r}")
+    return number
+
+
+def count_valid_monitors(case):
+    """Match the processor's Component monitor checks and 1e-9 m tolerance."""
+    count = 0
+    case_name = case.findtext("Name", default="unnamed case")
+    for ordinal, layer in enumerate(case.findall("./Component/Layers/Layer"), 1):
+        layer_index = layer.get("Index", str(ordinal))
+        scalar = layer.find('./Scalars/Scalar[@name="Thickness"]')
+        thickness = xml_number(scalar.get("value", "") if scalar is not None else "")
+        if thickness <= 0:
+            raise ValueError(f"Layer {layer_index}: thickness must be positive")
+
+        for index, monitor in enumerate(
+            layer.findall("./MonitorPositions/MonitorPosition"), 1
+        ):
+            element = (monitor.findtext("ElementID") or "").strip()
+            depth_scalar = monitor.find('./Scalars/Scalar[@name="RealDepthInLayer"]')
+            try:
+                depth = xml_number(
+                    depth_scalar.get("value", "") if depth_scalar is not None else ""
+                )
+            except ValueError:
+                depth = None
+
+            reason = None
+            if re.fullmatch(r"[0-9]+", element) is None:
+                reason = "ElementIDNotNumeric"
+            elif depth is None:
+                reason = "RealDepthNotNumeric"
+            elif not -1e-9 <= depth <= thickness + 1e-9:
+                reason = "RealDepthOutsideLayer"
+
+            if reason:
+                monitor_index = monitor.get("Index", str(index))
+                print(
+                    f"WARNING: {case_name}, layer {layer_index}, "
+                    f"monitor {monitor_index}: ignored stale monitor ({reason})."
+                )
+            else:
+                count += 1
+    return count
+
+
 def get_file_info_from_xml(xml_file):
     """
     Read all cases from the XML.
 
     Assumption:
     all cases inside the same .w6p file should have the same number of layers
-    and monitor positions.
+    and valid monitor positions.
 
     If they do not match, print a warning.
     """
@@ -99,11 +151,10 @@ def get_file_info_from_xml(xml_file):
     for i, case in enumerate(cases, start=1):
         case_name = case.findtext("Name", default=f"Case_{i}")
 
-        layers = case.findall(".//Component/Layers/Layer")
-        monitors = case.findall(".//MonitorPosition")
+        layers = case.findall("./Component/Layers/Layer")
 
         n_layers = len(layers)
-        n_monitors = len(monitors)
+        n_monitors = count_valid_monitors(case)
         n_sensors = n_monitors + boundary_sensor_count
 
         case_counts.append(
@@ -204,9 +255,9 @@ for wufi_file in list_wufi:
     )
 
     commands.append(
-        f"REM {wufi_file.name} | "
-        f"{file_info['n_cases']} case(s) | "
-        f"{file_info['n_layers']} layers | "
+        f"REM {wufi_file.name}; "
+        f"{file_info['n_cases']} case(s); "
+        f"{file_info['n_layers']} layers; "
         f"{file_info['n_sensors']} sensors"
     )
 
