@@ -1347,7 +1347,7 @@ ResolveWUFISelections[manifest_Association, selectors_] := Module[{all, resolved
 ];
 
 forceWallClockToUTC[date_, fixedTimeZone_?NumericQ] := Module[{parts, fixed},
-  parts = Quiet@Check[Take[DateList@date, 6], $Failed];
+  parts = Quiet@Check[DateValue[date, {"Year", "Month", "Day", "Hour", "Minute", "Second"}], $Failed];
   If[parts === $Failed, Return[Missing["InvalidDate"]]];
   fixed = DateObject[parts, TimeZone -> fixedTimeZone];
   TimeZoneConvert[fixed, 0]
