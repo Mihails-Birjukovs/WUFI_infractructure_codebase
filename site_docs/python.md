@@ -1,6 +1,24 @@
-# Python climate and diagnostic tools
+# Python infrastructure: WUFI automation, climate and diagnostics
 
-The **Python tools branch was contributed by Mihails Birjukovs and Valters Ribickis**. The [WUFI Python branch](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/tree/WUFI_python_tools) contains standalone analysis tools; it does not bundle the Mathematica production packages. Its README and per-module source are authoritative for the interface in your selected commit.
+The Python tools branch contains software from Mihails Birjukovs and Valters Ribickis. On **20 October 2026, Valters Ribickis added three WUFI-facing Python packages** alongside the established climate and multiscale/modal utilities. The [Python branch](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/tree/WUFI_python_tools) and [Mathematica branch](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/tree/WUFI_mathematica_tools) are separate maintained trees.
+
+## New WUFI-facing Python packages
+
+| Package | What it does | Scope and limitations |
+| --- | --- | --- |
+| [Batch Launcher Automated v1.0](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/blob/WUFI_python_tools/python_tools/WUFI_Batch_Launcher_Automated_v1.0/README.md) | Parses embedded WUFI XML and prepares a Windows batch file | Does **not execute** WUFI or generate Mathematica manifests; can use first-case metadata for multi-case projects |
+| [Data Post-Processor Automated v1.0](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/blob/WUFI_python_tools/python_tools/WUFI_Data_Post_Processor_Automated_v1.0/README.md) | ASC to temperature/RH/dew-point/water-content CSV and JPG plots | Not Mathematica's five-WXF outputs; ASC-to-case pairing is positional; regenerates derived directories |
+| [Wall Construction Optimisation](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/blob/WUFI_python_tools/python_tools/WUFI_Wall_Construction_Optimisation/README.md) | One parameter-sweep and one adaptive-thickness script, each invoking WUFI | Local heuristic, static XML-based U-value assumptions and moisture criteria require review; may replace candidate folders |
+
+**Environment:** Python 3.10+; Windows and licensed WUFI command-line executable for the WUFI-running scripts. Plotting and optimisation tools require NumPy, pandas and **Matplotlib**, which is not currently in the branch's shared requirements file; SciPy is optional for density plots. Launcher preparation uses the Python standard library.
+
+**Safety:** replace local workstation paths, preserve originals and use isolated disposable working directories. These scripts can overwrite batch files and recursively clear derived outputs. Verify ASC columns/units and project/case identity before reporting results. Plots labelled mould risk do not calculate a biological growth index.
+
+**Acceptance:** existing Python CI on 3.11–3.13 compiles the new scripts and runs the earlier synthetic suite, **not** new WUFI-specific integration tests. Their detailed README files describe local review exercises, but those tests have not been committed. [Issues #28–#35](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/issues) request Valters's assessment before any tests or behavior are changed.
+
+## Existing climate and diagnostic utilities
+
+The pre-existing climate/multiscale/DMD tools remain usable with synthetic fixtures independently of WUFI; they are not the newly introduced Windows execution toolchain.
 
 ## Set up and test
 
@@ -15,7 +33,7 @@ python -m pytest -q python_tools/tests
 
 The published Python CI matrix targets 3.11–3.13 with synthetic fixtures. Passing synthetic regression tests **does not** establish historical-data or WUFI application equivalence.
 
-## Implemented modules
+## Other Python modules
 
 | Module | Purpose | Lineage and interpretation |
 | --- | --- | --- |
