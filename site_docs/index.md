@@ -20,12 +20,12 @@
 
 ## Two maintained toolchains
 
-| Wolfram Mathematica: simulation and comparison | Python: climate and diagnostics |
+| Wolfram Mathematica: simulation and comparison | Python: WUFI automation, climate and diagnostics |
 | --- | --- |
-| WUFI batch launcher v1.0, ASC post-processor v1.1.1, sensor comparison v1.2.0 | `pvlib`-based WAC generation, multiscale diagnostics, exact/delay DMD and DMDc reference methods |
+| WUFI batch launcher v1.0, ASC post-processor v1.1.1, sensor comparison v1.2.0 | `pvlib` WAC generation; new Python WUFI batch-file launcher, ASC-to-CSV/JPG post-processor, construction sweep/thickness search; multiscale and modal diagnostics |
 | [Mathematica branch](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/tree/WUFI_mathematica_tools) (repository default) | [Python branch](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/tree/WUFI_python_tools) |
-| Accepted historical release archives, original WUFI/WXF toolchain | Synthetic CI with qualified historical numerical replay evidence |
-| Windows, licensed WUFI Pro, Mathematica | Python environment with installed branch requirements |
+| Accepted historical release archives, original WUFI/WXF toolchain | Existing synthetic tests pass; newly added Windows/WUFI workflows await application-level and interoperability acceptance |
+| Windows, licensed WUFI Pro, Mathematica | Python; Windows/WUFI for execution scripts, additional Matplotlib for plotting |
 
 **These branches are intentionally separate working trees and must not be merged.** See the [contribution policy](contributing.md).
 
@@ -34,10 +34,12 @@
 - [Install and set up](getting-started.md) a separate research workspace.
 - [Follow the data flow](architecture.md) from weather and sensor inputs through WUFI outputs.
 - [Use the Mathematica tools](mathematica.md) for batch execution, post-processing and sensor comparison.
-- [Explore Python tools](python.md) using synthetic examples before authorized observations.
+- [Explore Python tools](python.md) including Valters's WUFI workflow scripts; use synthetic climate/modal examples before authorized observations.
 - [Review validation scope](validation.md) before interpreting numerical agreement.
 - [Credit and cite the methods](references.md), [software and measurement contributors](credits.md).
 - [Understand restricted data rights and provenance](data-provenance.md).
+
+**New in the Python branch (20 October 2026):** Valters Ribickis contributed a batch launcher, ASC post-processor and two construction-search scripts. Their outputs and acceptance status are distinct from the Mathematica releases; see [Python tools](python.md) and [open collaborator review issues](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/issues).
 
 ## Software, instrumentation and scientific interpretation
 
