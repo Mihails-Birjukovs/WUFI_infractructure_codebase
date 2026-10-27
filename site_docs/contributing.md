@@ -5,7 +5,7 @@
 | Change type | Correct PR base |
 | --- | --- |
 | Mathematica launcher, ASC processing, sensor comparison | WUFI_mathematica_tools |
-| Python climate, tests, multiscale, DMD, HODMD and DMDc | WUFI_python_tools |
+| Python climate, multiscale/DMD, **batch launcher, ASC processor, construction sweep/thickness optimisation**, and tests | WUFI_python_tools |
 | Curated public website and Zensical workflow | WUFI_mathematica_tools |
 
 ## Review checklist
@@ -32,3 +32,7 @@ Scientific calibration, data analysis and article drafting occur in the **Hygrot
 The site is a curated **two-branch snapshot**. Python branch content can evolve without an automatic site rebuild containing those code changes. Update summaries by reviewed website PRs rather than cross-branch merges.
 
 [Licensing and publication rights](licensing.md).
+
+## Python WUFI tools collaborator review (2026-10-28)
+
+The new Python WUFI-facing packages were contributed by Valters Ribickis and are documented in the separate source branch. [Issues #28–#35](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/issues) are assigned to him for assessment, covering safe output handling, tests/CI, case mapping, optimizer assumptions, platform/dependencies, QC, interoperability and release governance. **Do not implement any of those proposals solely because an Issue is open.** Publish Python implementation changes via reviewed PRs to `WUFI_python_tools`, and refresh this public site by a separate documentation PR to `WUFI_mathematica_tools`.
