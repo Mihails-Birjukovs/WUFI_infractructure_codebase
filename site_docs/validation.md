@@ -25,3 +25,7 @@
 No public site test runner has access to the raw REF/HEMP research database, calibrated WUFI projects, or original private archived figures. Site CI tests documentation safety and build quality, **not the private experiments**.
 
 For fine-grained test histories see [Mathematica historical gate audit](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/blob/WUFI_mathematica_tools/docs/WOLFRAM_ARCHIVED_EQUIVALENCE_GATES_2026_10_18.md) and [Python release gate index](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/blob/WUFI_python_tools/docs/REF_HEMP_RELEASE_GATES.md).
+
+## Python WUFI v1.0 tools — current release boundary
+
+Valters Ribickis's October 2026 batch generator, ASC CSV/JPG processor and wall-construction sweep/adaptive thickness scripts **are not covered** by the archived Mathematica acceptance reports or private final REF/HEMP WXF parity. The Python 3.11–3.13 workflow **compiles** the new source, but runs the existing synthetic climate/modal tests and examples; it does not execute the new WUFI functions, licensed Windows WUFI or an independent Python/Mathematica numeric comparison. Package README statements about local tests are not a committed regression suite. Consult [the Python page](python.md) and [Issues #28–#35](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/issues) for Valters's pending assessment.
