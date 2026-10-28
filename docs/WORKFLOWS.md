@@ -13,9 +13,17 @@ python python_tools/wac_from_audit.py climate_hourly_audit.csv climate.wac --lat
 - Inspect the generated `WUFI®_WAC_02` header, 8-column data, nonnegative ISGH/ISD, site location, pressure convention, day/night transitions and import preview in WUFI before running any model.
 - For new projects, use the actual site coordinates and audit the outcome against independently observed radiation. Original project climate audit files are **not bundled**.
 
-## 2. Run simulations and align sensor data
+## 2. Run WUFI and process ASC: distinct toolchains
 
-This is handled by the separate [Mathematica production branch](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/tree/WUFI_mathematica_tools). It builds project manifests, exports ASC, creates WXF, normalizes sensor timestamps and compares selected REF/HEMP cases. Export paired, quality-controlled hourly sensor and WUFI time series with documented units, depth selection and excluded periods.
+**Accepted Mathematica workflow:** the separate [Mathematica branch](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/tree/WUFI_mathematica_tools) builds project manifests, exports ASC, produces five WXF types, aligns sensor timestamps and compares selected REF/HEMP cases. This is the documented production research path.
+
+**New Python workflow (Valters Ribickis, 2026-10-20):** [batch launcher](../python_tools/WUFI_Batch_Launcher_Automated_v1.0/README.md) prepares a .bat file for **manual WUFI execution**; [ASC post-processor](../python_tools/WUFI_Data_Post_Processor_Automated_v1.0/README.md) creates CSV/JPG visualizations. [Wall construction scripts](../python_tools/WUFI_Wall_Construction_Optimisation/README.md) instead generate changed project candidates and **execute WUFI** for parameter sweep and local adaptive thickness optimisation. They require Windows and a licensed installed WUFI command-line tool.
+
+These workflows **differ** in manifests, case mappings, file outputs, audit/recovery support and accepted test coverage. The Python launcher does not create the Mathematica export manifest. The Python processor pairs ASC/case metadata using sorted positions, which may be ambiguous in multi-case campaigns. Verify ASC schema/units, case identity and time basis independently.
+
+**Safety:** consult each package README before use. Some operations replace batch files or recursively delete generated output directories. Keep source and output snapshots isolated and backed up. The new WUFI scripts have not been validated end-to-end against the Mathematica releases. [Open discussion Issues #28–#35](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/issues) track proposed tests, safe execution and interoperability work **without authorizing changes**.
+
+Export paired, quality-controlled hourly sensor/WUFI series with units, depths, excluded periods and documented model source for the analysis steps that follow.
 
 ## 3. Evaluate multiscale differences
 

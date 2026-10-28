@@ -1,4 +1,19 @@
-# Python climate and dynamical diagnostics
+# Python WUFI automation, climate and dynamical diagnostics
+
+The branch includes **two distinct classes of tools**: (i) standalone solar/climate and time-series utilities and (ii) Windows WUFI-facing automation. The climate and modal examples do not need WUFI or Mathematica; the new project-generation and optimisation scripts **do require licensed WUFI**. Private REF/HEMP data are not bundled.
+
+## WUFI batch processing, ASC plotting and construction optimisation
+
+Contributed by **Valters Ribickis** on 20 October 2026; see the detailed, original package READMEs:
+
+- [Batch launcher v1.0](WUFI_Batch_Launcher_Automated_v1.0/README.md) — reads embedded project XML and generates an operator-reviewed Windows `.bat`; it **does not execute** WUFI itself, and uses first-case counts when cases disagree.
+- [Data post-processor v1.0](WUFI_Data_Post_Processor_Automated_v1.0/README.md) — transforms matching ASC files into five CSV series and JPG plots per case; exported CSV/JPG is **not** Mathematica WXF parity, and case pairing is positional.
+- [Wall-construction parameter sweep and adaptive thickness search](WUFI_Wall_Construction_Optimisation/README.md) — modify generated project copies, **execute WUFI** and evaluate moisture; the adaptive method estimates U from static XML layer/surface values and does not guarantee a global or feasible optimum.
+
+**Before running:** adapt hardcoded local paths; use a **dedicated disposable output workspace**, preserve previous results and inspect generated cases, ASC columns and log messages. The scripts can delete pre-existing temporary/output folders. Install `numpy pandas matplotlib` for post-processing or optimisation (SciPy is optional for density plots). Matplotlib is currently **not** included in `requirements.txt`; do not infer complete install coverage from `pip install -r` alone. Windows, installed WUFI and its command-line availability are additional requirements for execution workflows.
+
+**Acceptance boundary:** existing GitHub CI compiles the modules but does not run their functional regression tests or WUFI; collaboration review is requested in [Issues #28–#35](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/issues) before any implementation changes. The Mathematica launcher/processor use different manifests, formats and release validation.
+
 
 Install from repository root:
 
@@ -9,7 +24,7 @@ python -m pip install -r python_tools/requirements.txt
 python -m pytest -q python_tools/tests
 ```
 
-The tools are standalone scripts, **not WUFI or Mathematica dependencies**. They intentionally contain **no private REF/HEMP data**.
+The **climate and modal utilities** are standalone and do not require WUFI or Mathematica. The separately documented WUFI-facing automation scripts have additional Windows/WUFI runtime requirements; none of these packages bundles private REF/HEMP data.
 
 ## WAC from an audited hourly climate CSV
 

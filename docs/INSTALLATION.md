@@ -16,7 +16,19 @@ python -m pip install -r python_tools/requirements.txt
 python -m pytest -q python_tools/tests
 ```
 
-Dependencies: NumPy, pandas, pvlib; pytest for regression tests. Version constraints are specified in `python_tools/requirements.txt`. No network or source archive is needed for *synthetic* examples. Do not conclude that the entire scientific pipeline is validated merely because tests pass.
+Baseline dependencies: NumPy, pandas, pvlib, SciPy and pytest as listed in branch requirements; the added plotting/optimisation scripts also require Matplotlib. Version constraints are specified in `python_tools/requirements.txt`. No network or source archive is needed for *synthetic* examples. Do not conclude that the entire scientific pipeline is validated merely because tests pass.
+
+## Additional Windows WUFI Python packages (2026-10-20)
+
+The branch also includes Valters Ribickis's [batch generator](../python_tools/WUFI_Batch_Launcher_Automated_v1.0/README.md), [ASC data post-processor](../python_tools/WUFI_Data_Post_Processor_Automated_v1.0/README.md), and [wall construction parameter-sweep / adaptive thickness search](../python_tools/WUFI_Wall_Construction_Optimisation/README.md).
+
+The launcher uses only the Python standard library and writes a Windows batch file; an operator runs the generated batch after reviewing it. The other tools need NumPy, pandas and **Matplotlib**; the post-processor can additionally use SciPy for KDE. **Matplotlib is not presently listed in `python_tools/requirements.txt`.** Install it separately if these tools are needed:
+
+```powershell
+python -m pip install matplotlib
+```
+
+The Python WUFI-execution workflows need an appropriately licensed and working Windows WUFI command-line installation; Linux synthetic CI is *not* a substitute. Replace hard-coded local `current_dir` / `working_dir` settings in **each script**, and use an isolated noncritical data folder. Some tools delete and recreate named derived folders; back up prior outputs. The new scripts have **not** undergone the Mathematica release acceptance suite or WUFI end-to-end equivalence testing. Review source-specific constraints before use and consult [Issues #28–#35](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/issues) for assessment requests.
 
 ## Audited WAC climate input
 
@@ -48,6 +60,6 @@ Decide intentionally whether to standardize states, normalize units, detrend, om
 
 ## Supported boundaries
 
-Standalone synthetic examples do not require commercial WUFI or Mathematica. Real WUFI projects, production sensor registries, raw MongoDB records, historical WAC audit tables and calibrated simulation results must be obtained from an authorized research archive and are **not in the public repository**.
+The climate/modal synthetic examples do not require commercial WUFI or Mathematica. The separately documented Python WUFI-running workflows do. Real WUFI projects, production sensor registries, raw MongoDB records, historical WAC audit tables and calibrated simulation results must be obtained from an authorized research archive and are **not in the public repository**.
 
 See [examples](EXAMPLES.md), [workflow](WORKFLOWS.md), and [provenance](PROVENANCE.md).

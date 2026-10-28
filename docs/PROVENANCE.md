@@ -11,6 +11,12 @@
 
 Do not use these results to claim numerical identity to the original Phase-4 implementation. Historical tables/figures are independent frozen evidence, requiring separately authorized comparison.
 
+## 20 October 2026 — separate WUFI-facing Python scripts
+
+**Valters Ribickis** contributed a Python WUFI batch generator, ASC CSV/JPG post-processor, and wall-construction parameter sweep / adaptive thickness search (see [package guides](../python_tools/README.md)). These are **new repository contributions**, not recovered historical Python implementations of the accepted Mathematica launcher/postprocessor and not from draft v1.4 Appendix I source listings. They depend on distinct Windows/WUFI, ASC mapping, output and safety contracts.
+
+The package READMEs describe local focused tests, but their harness is not in the repository; existing Python CI compilation/synthetic climate-modal passes are **not** end-to-end licensed WUFI acceptance. Construction optimisation depends on static XML U-value assumptions and moisture criteria requiring independent physical verification; numerical equivalence to Mathematica production results is not established. [Open review Issues #28–#35](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/issues) request Valters's input **before implementation**.
+
 ## Solar geometry provenance
 
 The historical reconstructed WAC uses **56.97 N, 24.17 E**. The physical test-house report specifies **56.985411 N, 24.085193 E**. This difference is retained for research reproducibility; alternate coordinates require an explicitly labelled new analysis. Fixed WAC time is **UTC+2**, not DST-adjusting `Europe/Riga`.
