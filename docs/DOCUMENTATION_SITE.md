@@ -1,6 +1,6 @@
 # Documentation site architecture, acceptance and rights record
 
-**Initial site published (2026-10-19), with GitHub Actions run #39230210306 attempt 2 successful after Pages initialization. Visual QA not independently completed. Subsequent INM-style and credits update is staged as a separate PR, pending owner review.**
+**Published and visually accepted by the owner after PR #27 (2026-10-20), published commit `5d55fb3`. This file records historical acceptance gates and pending later documentation-only revisions.**
 
 ## Protocol and architecture
 
@@ -18,7 +18,7 @@ The maintained source worktrees remain **WUFI_mathematica_tools (default)** and 
 - .github/workflows/documentation-site.yml — PR build/validation only; reviewed default-branch pushes deploy.
 - Existing docs/ and README files on each tool branch — authoritative detailed source documentation and tests.
 
-Future published destination **after verified merge and successful deploy**:
+Current published website:
 https://mihails-birjukovs.github.io/WUFI_infractructure_codebase/
 
 Site source snapshot should be updated by PR when branch sources evolve. No automatic cross-branch checkout, merges or credentials are used.
@@ -62,3 +62,9 @@ User-provided side-by-side browser screenshots showed the WUFI home hero, identi
 Recovery: publish the same approved WUFI stylesheet under a **new uniquely versioned URL** (`stylesheets/inm-wufi-20261020.css`) to invalidate any cache of the former asset path, remove the old asset, and update `extra_css` in Zensical. Match the OOC footer's concise copyright while retaining legal rights detail on the Licensing page. Simplify the visible homepage contribution panel to two columns, preserving complete role credits on Credits & contributors.
 
 Add `scripts/check_site_style.py` to CI to require the generated homepage, secondary pages, stylesheet relative URLs and core hero/INM/footer selectors to be present. This is **build-artifact QA, not remote browser HTTP/visual QA**; after merge, the actual live page must be inspected, CSS status must be 200, and computed background/width/text colors checked. OOC brand assets and Python/Mathematica code remain unchanged.
+
+## 2026-10-28 Python tool inventory refresh (documentation proposal)
+
+Source: `WUFI_python_tools` commit `c5ec8ce` (Valters Ribickis, 2026-10-20). New Python source contains a batch launcher, ASC post-processor, and parameter sweep/thickness optimisation scripts. Documentation now points to their original package READMEs, clarifies that only some scripts execute licensed WUFI, distinguishes CSV/JPG from Mathematica WXF outputs, and prominently preserves the execution/physical/test caveats. Three classes of follow-up are tracked as [Issues #28–#35](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/issues): safe execution, regression tests and interoperability with Mathematica; additional dependencies and physical/QC/governance review also remain open. **Those issues request Valters's assessment before any implementation**.
+
+This release changes only documentation and root README on the Mathematica default branch. No executable tools, CI workflows, licenses, visual CSS, branding or public-site file allowlist are changed. PR build and human approval still required before publication; the Python source README update is separately proposed against the Python branch.

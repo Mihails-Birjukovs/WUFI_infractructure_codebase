@@ -7,7 +7,7 @@ The software toolchains, sensor-network operations, experimental measurements an
 | Component | Contributor(s) | Scope |
 | --- | --- | --- |
 | **Mathematica tools** — original branch (`WUFI_mathematica_tools`) | **Mihails Birjukovs** | WUFI launcher, project metadata/extraction infrastructure, ASC post-processing, and sensor/WUFI comparison tooling |
-| **Python tools** (`WUFI_python_tools`) | **Mihails Birjukovs** and **Valters Ribickis** | Python research tooling, including climate/WAC preparation and time-series/modal-analysis methods |
+| **Python tools** (`WUFI_python_tools`) | **Mihails Birjukovs** and **Valters Ribickis** | Python research tools (Mihails Birjukovs and Valters Ribickis); **Valters Ribickis specifically contributed the WUFI batch launcher, ASC post-processor and wall-construction sweep/thickness tools added 20 October 2026** |
 
 These contributions concern the repository’s tooling. Module-by-module **original vs reconstructed vs new-method** distinctions are documented in [Python tools](python.md), [modal methods](modal.md), and the [source reference index](source-reference.md). Individual commits provide the finer-grained code history.
 

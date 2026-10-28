@@ -15,6 +15,9 @@ This website documents **two deliberately distinct source branches**. Always sel
 ## Python source
 
 - [Python branch](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/tree/WUFI_python_tools)
+- [Python batch launcher v1.0 — Valters Ribickis](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/blob/WUFI_python_tools/python_tools/WUFI_Batch_Launcher_Automated_v1.0/README.md)
+- [Python ASC post-processor v1.0 — Valters Ribickis](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/blob/WUFI_python_tools/python_tools/WUFI_Data_Post_Processor_Automated_v1.0/README.md)
+- [Python wall-construction parameter sweep and thickness search — Valters Ribickis](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/blob/WUFI_python_tools/python_tools/WUFI_Wall_Construction_Optimisation/README.md)
 - [Module API, example contracts](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/blob/WUFI_python_tools/python_tools/README.md)
 - [Python requirements](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/blob/WUFI_python_tools/python_tools/requirements.txt)
 - [Synthetic tests](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/tree/WUFI_python_tools/python_tools/tests)
@@ -30,3 +33,7 @@ This website documents **two deliberately distinct source branches**. Always sel
 The separately archived **WUFI Unified Report, draft v1.4** explains original model and material study conditions. It is not reproduced here and is not necessarily approved for open redistribution. This website is software documentation and not a peer-reviewed publication.
 
 Core execution tools include licensed WUFI Pro and Wolfram Mathematica, plus Python libraries under their separate licenses. For a reproducibility citation, record source SHAs for **both** branches, original data/model hashes, execution environment, selected interval, and exact archival evidence.
+
+## Collaborator review backlog
+
+The three Python WUFI-facing packages were added by Valters Ribickis at commit [`c5ec8ce`](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/commit/c5ec8ce095d36eb168db9741f9e28a041daa80bf), on 20 October 2026. [Issues #28–#35](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/issues) record open questions about safe overwriting, functional tests, case mapping, U-value physics, dependencies/concurrency, data QC, Mathematica interoperability and contribution governance. All await Valters's assessment before implementation.
