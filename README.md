@@ -2,6 +2,10 @@
 
 **Active branch:** `WUFI_python_tools`. This branch contains Python tools for preparing climate inputs, analysing experimental/WUFI discrepancies, and (since 20 October 2026) separately automating Windows WUFI runs, ASC post-processing and wall-construction parameter searches. It intentionally **does not contain the production Mathematica packages**; those live on [`WUFI_mathematica_tools`](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/tree/WUFI_mathematica_tools), the repository's default branch.
 
+## REF/HEMP Campaign 2 preparation (research-only)
+
+The separate [Campaign 2 scientific preparation status and admission gates](docs/REF_HEMP_C2_PREPARATION_STATUS_2026_11_14.md) describe the new climate reconstruction experiments, WUFI6 copy-only smoke tests, physically constrained material-inference design and unresolved validation steps. **No extended-climate WUFI6 material optimization is admitted or claimed.** Private sensor/model data and results remain outside this public repository.
+
 ## Python tools
 
 | Tool | Purpose | Status |
