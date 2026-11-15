@@ -16,7 +16,8 @@ This note belongs to the Python infrastructure branch. The two long-lived branch
 4. A second benchmark used **actual-date, ERA5-Land-labelled hourly data delivered by a secondary public API**, with independent local bias corrections, over the same masked windows. Preliminary temperature reconstruction supports actual-date reanalysis for longer gaps. This does not prove accuracy during the truly missing long interval, and the data are not the official original Copernicus CDS extraction.
 5. Jointly unconstrained temperature and vapour-pressure reconstructions occasionally imply RH above saturation; a fully physical WAC is NOT yet admitted. Missing indoor climate forcing is a separate issue.
 6. A further held-out pilot assessed joint temperature and logit-RH correction (rather than independent temperature and log-vapour-pressure correction) on the same retrospective masks. The logit formulation kept reconstructed RH strictly between 0 and 100% in that pilot; it is **not** a complete physically accepted climate, nor a result for wind, rain, irradiance or long-gap on-site truth.
-7. The benchmark scripts, masks, raw secondary reanalysis response, outputs, SHA-256 manifests, versioned methods and optimization handoff are saved in a **private project archive**, not committed here. No private results or data are available in this public source repository.
+7. An additional **controlled-regression comparison** now evaluates ERA-driven ordinary and delay DMDc-style residual models, including a finite nonlinear lifting library. All configured variants completed masked-gap tests, including a small set of 30-/60-day synthetic holes; no consistently superior method emerged against ERA+bounded Kalman across T, RH and vapour pressure. A targeted held-out-data poisoning check confirmed unchanged model predictions in one representative mask. These are ARX/DMDc-style numerical predictors, **not** a completed Koopman eigenmode or robust full-spectrum validation.
+8. The benchmark scripts, masks, raw secondary reanalysis response, outputs, SHA-256 manifests, versioned methods and optimization handoff are saved in a **private project archive**, not committed here. No private results or data are available in this public source repository.
 
 These are distinct evidence levels: acquisition, source-QC, masked reconstruction benchmark, native WUFI smoke testing, and final multi-case physical validation. A result at one level does not automatically pass the others.
 
@@ -30,7 +31,7 @@ These are distinct evidence levels: acquisition, source-QC, masked reconstructio
 - Both interior and exterior boundary records must be reconstructed for observed post-gap periods. The long unknown interior period needs explicit, separately validated scenarios.
 - Validation: blocked withheld windows, seasonal stratification, extremes and wetting events, diurnal amplitude/phase, power spectra/wavelets, temporal autocorrelation, variable cross-correlations, realistic uncertainty envelopes, and WUFI6 wall-state sensitivity.
 
-No completed DMDc/HODMD/POD reconstruction benchmark, official-CDS comparison or accepted extended-horizon WAC is claimed here.
+A limited DMDc-style controlled reconstruction comparison is now completed as an exploratory numerical benchmark. **Full DMD/HODMD/POD eigenmode, spectral and multiscale validation remains open**, as do original-CDS comparison, interior/exterior accepted WAC generation and extended-horizon native WUFI6 acceptance.
 
 ## Approved future WUFI6 material-inference architecture (NOT IMPLEMENTED)
 
