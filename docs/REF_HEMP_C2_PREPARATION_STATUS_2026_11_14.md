@@ -34,7 +34,15 @@ These are distinct evidence levels: acquisition, source-QC, masked reconstructio
 - Both interior and exterior boundary records must be reconstructed for observed post-gap periods. The long unknown interior period needs explicit, separately validated scenarios.
 - Validation: blocked withheld windows, seasonal stratification, extremes and wetting events, diurnal amplitude/phase, power spectra/wavelets, temporal autocorrelation, variable cross-correlations, realistic uncertainty envelopes, and WUFI6 wall-state sensitivity.
 
-A limited DMDc-style controlled reconstruction comparison is now completed as an exploratory numerical benchmark. **Full DMD/HODMD/POD eigenmode, spectral and multiscale validation remains open**, as do original-CDS comparison, interior/exterior accepted WAC generation and extended-horizon native WUFI6 acceptance.
+A limited DMDc-style controlled reconstruction comparison is completed as an exploratory numerical benchmark. Original CDS time-series and secondary-provider thermodynamic agreement have been checked, and a bounded Kalman source-swap regression reproduced the earlier results on unchanged masked windows. **Full DMD/HODMD/POD eigenmode, spectral/wavelet and physically admitted WAC validation remain open**, as does extended-horizon native WUFI6 acceptance.
+
+## Additional official climate physics and scenario gates (experimental)
+
+- A small original-format ERA5-Land GRIB accumulation extract was independently de-accumulated and matched to the official time-series radiation and precipitation values over the comparable summer hours. This supports the time-series product's stated de-accumulation convention; the full-year/source-exposure gate is still open.
+- A version-pinned `pvlib` solar-geometry and Erbs decomposition audit checked physical nonnegativity, daylight plausibility and DNI/DHI/GHI closure on the official time-series grid. Negative numerical accumulation artefacts are flagged and altered only in separately versioned **derived research data**, never in original source files.
+- Official snowfall was added as a modelled precipitation-phase reference. A grid-based liquid-precipitation estimate is **not** treated as actual wind-driven rain at the wall.
+- Three exterior and three interior **source-labelled, research-only** climate-scenario series were generated. The original available indoor/outdoor meteorological observations are preserved exactly; missing hours are explicitly classed as conditional reconstructions or assumptions. The unknown indoor operating history is represented by alternative dry, humid and assumed-transition regimes, not a claimed recovered ground truth.
+- Independent joint-series checks verified common time axes, measured-hour preservation and preliminary seam criteria. No complete native WUFI WAC or material-property inference is claimed; actual site geometry, time semantics, pressure specification, facade exposure and end-state sensitivities remain to be accepted.
 
 ## Approved future WUFI6 material-inference architecture (NOT IMPLEMENTED)
 
@@ -53,7 +61,7 @@ The inner optimization loop should avoid figure export, record source/project ha
 
 ## Remaining admission gates
 
-- Complete physical-source verification of the acquired official ERA5-Land climate (including original GRIB accumulation spot-checks, correct site position and exposure), both interior/exterior WACs, initial-state handling and simulation horizon.
+- Complete physical-site and WUFI climate admission (actual site position/exposure, correct pressure, wind-driven rain and WAC time semantics), after the already completed summer original-GRIB de-accumulation check; independently qualify both interior/exterior scenarios, initial-state handling and simulation horizon.
 - Resolve archived/native WUFI6 baseline regression and ASC output-column identities, then demonstrate extended-horizon wall-state sensitivity on isolated copies.
 - Complete physically consistent psychrometric correction and blocked multi-scale/model-based validation without data leakage.
 - Verify WUFI material-XML mutation/readback, curve constraints, per-material initial-water conversion and correct handling of shared material cards.
