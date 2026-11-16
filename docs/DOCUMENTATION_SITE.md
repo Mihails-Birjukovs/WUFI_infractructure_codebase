@@ -68,3 +68,13 @@ Add `scripts/check_site_style.py` to CI to require the generated homepage, secon
 Source: `WUFI_python_tools` commit `c5ec8ce` (Valters Ribickis, 2026-10-20). New Python source contains a batch launcher, ASC post-processor, and parameter sweep/thickness optimisation scripts. Documentation now points to their original package READMEs, clarifies that only some scripts execute licensed WUFI, distinguishes CSV/JPG from Mathematica WXF outputs, and prominently preserves the execution/physical/test caveats. Three classes of follow-up are tracked as [Issues #28–#35](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/issues): safe execution, regression tests and interoperability with Mathematica; additional dependencies and physical/QC/governance review also remain open. **Those issues request Valters's assessment before any implementation**.
 
 This release changes only documentation and root README on the Mathematica default branch. No executable tools, CI workflows, licenses, visual CSS, branding or public-site file allowlist are changed. PR build and human approval still required before publication; the Python source README update is separately proposed against the Python branch.
+
+## 2026-11-16 Campaign 2 site release
+
+The owner explicitly approved public documentation publication after approving and merging Python-branch PR #38 (squash commit `0038eb386e55d167c0c0034f4045862046364685`).
+
+Publication scope: one new curated site page `site_docs/campaign2.md`, navigation and internal page links, one exact allowlist extension, and build-artifact CSS verification for the new page. This is a documentation-only update on `WUFI_mathematica_tools`; it does not merge Python branch history. Source measurements, raw site geometry, private full numerical benchmarks, licensed WUFI files, credentials, unpublished experimental graphics and executable experimental M0–M7 models are excluded.
+
+The page distinguishes existing public Python utilities from private Campaign 2 experiments, validated masked-observation tests from the unobserved actual gap, and proposed material optimization from implemented software. No new scientific equations are published on this page; future scientific formulae remain subject to the approved numbered LaTeX site rule.
+
+Accept PR review, exact public file allowlist, strict Zensical build, successful Pages deployment and live URL validation as **separate** evidence gates. This release note alone is not deployment proof.
