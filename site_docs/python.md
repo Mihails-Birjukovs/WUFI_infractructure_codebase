@@ -16,6 +16,10 @@ The Python tools branch contains software from Mihails Birjukovs and Valters Rib
 
 **Acceptance:** existing Python CI on 3.11–3.13 compiles the new scripts and runs the earlier synthetic suite, **not** new WUFI-specific integration tests. Their detailed README files describe local review exercises, but those tests have not been committed. [Issues #28–#35](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/issues) request Valters's assessment before any tests or behavior are changed.
 
+## Experimental REF/HEMP Campaign 2
+
+The [Campaign 2 research-status page](campaign2.md) summarizes exterior and interior reconstruction experiments, the M0–M7 method ladder and open physical-acceptance gates. The private model code and source data are **not distributed in this public branch**; existing Python utilities are prospective integration points, not an operational Campaign 2 framework.
+
 ## Existing climate and diagnostic utilities
 
 The pre-existing climate/multiscale/DMD tools remain usable with synthetic fixtures independently of WUFI; they are not the newly introduced Windows execution toolchain.
