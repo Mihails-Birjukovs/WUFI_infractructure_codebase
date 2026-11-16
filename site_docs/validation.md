@@ -14,6 +14,10 @@
 
 **Context:** The five-case acceptance tests predate and are distinct from the final calibrated two-case research campaign. Original archived 13/13 TestReport success is a **historical execution record**, whereas 11/13 comes from a new independently mirrored Python predicate implementation. Reporting only one number without its method would mislead.
 
+## Experimental Campaign 2 validation, not release acceptance
+
+The [Campaign 2 status page](campaign2.md) distinguishes masked tests on genuine observed indoor measurements from an unobserved real historical gap. Experimental M0–M7 studies show conditional wall-temperature gains but changing operating-regime transfer, nonidentifiable moisture buffering and inadequate calibrated long-gap uncertainty. **No new final WUFI climate, native solver regression or material-property inference is accepted by these experiments.** Their measured inputs, numerical result archives and experimental scripts remain private.
+
 ## Pending release checks
 
 - Test actual licensed WUFI import/execution after any climate-generation change.
