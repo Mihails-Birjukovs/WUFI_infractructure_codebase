@@ -15,6 +15,7 @@ This website documents **two deliberately distinct source branches**. Always sel
 ## Python source
 
 - [Python branch](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/tree/WUFI_python_tools)
+- [REF/HEMP Campaign 2 research preparation and gates](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/blob/WUFI_python_tools/docs/REF_HEMP_C2_PREPARATION_STATUS_2026_11_14.md) — public scientific status, not measurements or executable code
 - [Python batch launcher v1.0 — Valters Ribickis](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/blob/WUFI_python_tools/python_tools/WUFI_Batch_Launcher_Automated_v1.0/README.md)
 - [Python ASC post-processor v1.0 — Valters Ribickis](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/blob/WUFI_python_tools/python_tools/WUFI_Data_Post_Processor_Automated_v1.0/README.md)
 - [Python wall-construction parameter sweep and thickness search — Valters Ribickis](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/blob/WUFI_python_tools/python_tools/WUFI_Wall_Construction_Optimisation/README.md)
