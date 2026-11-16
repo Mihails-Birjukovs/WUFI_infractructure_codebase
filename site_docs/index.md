@@ -38,6 +38,7 @@
 - [Review validation scope](validation.md) before interpreting numerical agreement.
 - [Credit and cite the methods](references.md), [software and measurement contributors](credits.md).
 - [Understand restricted data rights and provenance](data-provenance.md).
+- [Follow REF/HEMP Campaign 2 research status](campaign2.md): ERA5-Land forcing, experimental M0–M7 indoor models and open acceptance gates.
 
 **New in the Python branch (20 October 2026):** Valters Ribickis contributed a batch launcher, ASC post-processor and two construction-search scripts. Their outputs and acceptance status are distinct from the Mathematica releases; see [Python tools](python.md) and [open collaborator review issues](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/issues).
 
