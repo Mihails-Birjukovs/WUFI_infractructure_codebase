@@ -22,6 +22,7 @@ PAGES = [
     "mathematica/index.html",
     "python/index.html",
     "climate/index.html",
+    "campaign2/index.html",
     "modal/index.html",
     "validation/index.html",
     "credits/index.html",

@@ -22,6 +22,7 @@ APPROVED = {
     "mathematica.md",
     "python.md",
     "climate.md",
+    "campaign2.md",
     "modal.md",
     "validation.md",
     "data-provenance.md",

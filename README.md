@@ -17,6 +17,8 @@
 - [Implementation / REF & HEMP provenance](docs/PROVENANCE.md)
 - [Branching policy](docs/BRANCHING.md)
 
+**Experimental Campaign 2 climate research:** The [public preparation status](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/blob/WUFI_python_tools/docs/REF_HEMP_C2_PREPARATION_STATUS_2026_11_14.md) and [documentation site summary](https://mihails-birjukovs.github.io/WUFI_infractructure_codebase/campaign2/) explain ERA5-Land and indoor M0–M7 method evidence. These are research-only gates, not an admitted WUFI6 boundary history or material optimizer.
+
 **Python tools have their own branch:** [`WUFI_python_tools`](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/tree/WUFI_python_tools). Use that branch for the `pvlib` WAC generator and multiscale/DMD/HODMD/DMDc analysis **and** Valters Ribickis's new Windows WUFI batch launcher, ASC post-processor and wall-construction optimization scripts (added 20 October 2026). Do not merge the Python branch into the Mathematica branch: the branches intentionally contain different source trees.
 
 ### Additional Python workflows (source on the separate branch)

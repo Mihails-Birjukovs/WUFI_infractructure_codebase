@@ -17,6 +17,7 @@ nav = [
   ] },
   { "Processing methods" = [
     "climate.md",
+    "campaign2.md",
     "modal.md",
   ] },
   { "Validation" = "validation.md" },

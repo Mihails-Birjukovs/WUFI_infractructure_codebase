@@ -36,6 +36,10 @@ Daylight gaps require a scientifically justified reconstruction policy. Full-rec
 
 **No private raw data or report illustrations are distributed from this site.**
 
+## Current Campaign 2 research
+
+The [experimental Campaign 2 status](campaign2.md) describes actual-date official CDS ERA5-Land forcing, bounded local correction and provisional indoor-climate scenarios. These are **not a production-admitted WAC** and do not change the historical WAC preparation contract above. Site exposure, solar/rain, wall-clock and unknown interior operation remain separate gates.
+
 ## Citations
 
 Credit [pvlib's preferred Anderson et al. (2023) JOSS project citation](https://doi.org/10.21105/joss.05994) for the Python library, and [Erbs, Klein & Duffie (1982)](https://doi.org/10.1016/0038-092X(82)90302-4) for the diffuse-fraction correlation. See [Research & references](references.md) for complete bibliography and caveats.
