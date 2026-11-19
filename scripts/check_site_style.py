@@ -116,6 +116,12 @@ def validate() -> None:
             if "Institutional logos excluded from the MIT license" in html:
                 raise ValueError("Long licensing disclaimer still in footer")
 
+    mathjs = SITE / "javascripts" / "mathjax.js"
+    if not mathjs.is_file() or 'tags: "all"' not in mathjs.read_text("utf-8"):
+        raise ValueError("Numbered MathJax JS not present in strict-build output")
+    home_html = (SITE / "index.html").read_text("utf-8")
+    if "mathjax@3.2.2" not in home_html or "javascripts/mathjax.js" not in home_html:
+        raise ValueError("Pinned math scripts not linked from output")
     print(
         f"PASS: {len(PAGES)} generated pages link to {STYLE}, "
         f"three approved SVGs and OOC-matched hero/footer selectors present"
