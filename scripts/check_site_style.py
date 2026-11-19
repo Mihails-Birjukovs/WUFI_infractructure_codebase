@@ -104,6 +104,8 @@ def validate() -> None:
             raise ValueError(f"{page_path}: footer copyright markup missing")
 
         if page_path == "index.html":
+            if 'href="https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase"' not in html or "md-source" not in html:
+                raise ValueError("Approved public GitHub repository link missing from header")
             for required_class in ("wufi-hero", "wufi-actions", "wufi-identity", "wufi-brand-mark"):
                 if required_class not in parser.classes:
                     raise ValueError(f"Homepage missing styling class: {required_class}")
