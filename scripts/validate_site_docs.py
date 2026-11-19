@@ -32,6 +32,7 @@ APPROVED = {
     "credits.md",
     "references.md",
     "stylesheets/inm-wufi-20261020.css",
+    "javascripts/mathjax.js",
     "assets/inm-horizontal.svg",
     "assets/inm-mark.svg",
     "assets/inm-square-footer.svg",
@@ -70,7 +71,7 @@ def validate() -> None:
         is_logo = name in APPROVED_INM_BLOBS
         if path.suffix.lower() in BLOCKED_SUFFIXES and not is_logo:
             raise ValueError(f"Data/binary artifact forbidden: {name}")
-        if path.suffix.lower() not in {".md", ".css"} and not is_logo:
+        if path.suffix.lower() not in {".md", ".css", ".js"} and not is_logo:
             raise ValueError(f"Unreviewed extension: {name}")
         payload = path.read_bytes()
         if len(payload) > 100_000:
@@ -87,6 +88,13 @@ def validate() -> None:
                 raise ValueError(f"Possible private string/credential: {name}, {pattern.pattern}")
         if "data:image/" in raw or "<script" in raw.lower() or "<iframe" in raw.lower():
             raise ValueError(f"Unexpected embedded image/script/iframe: {name}")
+    config = (ROOT / "zensical.toml").read_text(encoding="utf-8")
+    js = (DOCS / "javascripts" / "mathjax.js").read_text(encoding="utf-8")
+    if not all(fragment in config for fragment in (
+        "pymdownx.arithmatex.generic = true", "javascripts/mathjax.js",
+        "mathjax@3.2.2/es5/tex-mml-chtml.js"
+    )) or 'tags: "all"' not in js or "document$.subscribe" not in js:
+        raise ValueError("Missing pinned numbered-equation renderer or navigation hook")
     if actual != APPROVED:
         raise ValueError(
             "Site files differ from approved publication manifest: "
