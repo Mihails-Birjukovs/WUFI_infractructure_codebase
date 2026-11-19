@@ -6,6 +6,8 @@ site_author = "Mihails Birjukovs · Institute of Numerical Modelling, University
 copyright = "Copyright © 2026 Mihails Birjukovs"
 docs_dir = "site_docs"
 site_dir = "site"
+repo_url = "https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase"
+repo_name = "WUFI Infrastructure · GitHub"
 extra_css = ["stylesheets/inm-wufi-20261020.css"]
 extra_javascript = [
   "javascripts/mathjax.js",
