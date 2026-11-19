@@ -16,13 +16,13 @@
 
 ## Experimental Campaign 2 validation, not release acceptance
 
-The [Campaign 2 status page](campaign2.md) distinguishes masked tests on genuine observed indoor measurements from an unobserved real historical gap. Experimental M0–M7 studies show conditional wall-temperature gains but changing operating-regime transfer, nonidentifiable moisture buffering and inadequate calibrated long-gap uncertainty. **No new final WUFI climate, native solver regression or material-property inference is accepted by these experiments.** Their measured inputs, numerical result archives and experimental scripts remain private.
+The [Campaign 2 status page](campaign2.md) distinguishes original masked benchmarks on genuinely observed indoor values from a newly discovered *separately logged* RTU/Warsaw stream covering the historical MongoDB outage. Experimental M0–M8 studies still show conditional wall-temperature gains, changing operating-regime transfer, nonidentifiable moisture buffering and inadequate calibrated long-gap uncertainty. The new private audit independently reprocessed raw data and compared frozen I_DRY/I_WET/I_TRANSITION hypotheses with previously unseen records; I_WET performed best of those three, while humidity errors remained material. Sparse archived M0–M8 witnesses were inspected where available; **a complete new full-gap, equal-information-set M0–M8 benchmark is not yet done**. Neither physical sensor independence nor native WUFI6 source admission has been certified. **No new final WUFI climate, native solver regression or material-property inference is accepted by these experiments.** Their data, numerical archives and scripts remain private.
 
 ## Pending release checks
 
 - Test actual licensed WUFI import/execution after any climate-generation change.
 - Confirm 12.1/Windows regression for Mathematica changes, including graphics in a supported kernel environment.
-- Audit actual instrument logger IDs, radiation plane and heat-flux data source.
+- Audit original and RTU/Warsaw logger/sensor identity, sensor location, clock/DST semantics, radiation plane and heat-flux data provenance.
 - Record whether every scientific figure is *source-identified*, *numeric-source verified* or *independently regenerated*: these are progressively stronger states.
 - Retain date-window, time-base, channel QC and source commit in every reproducibility statement.
 

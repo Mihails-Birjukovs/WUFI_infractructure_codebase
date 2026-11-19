@@ -20,6 +20,12 @@ An October 2026 full MongoDB export was independently audited against the earlie
 
 The full dataset is not included in this repository. A known acquisition timestamp collapse and a major meteorological coverage gap require channel- and time-specific QC; the new snapshot is **not** automatically an uninterrupted clean hourly record. No separately identifiable heat-flux readings were found in those two JSON collections, even though construction documentation shows installed heat-flux meters; this is an acquisition/source-location problem, not proof that the meters never logged data.
 
+## Additional RTU/Warsaw source stream (research-only)
+
+In November 2026, authorized collaborators supplied an additional controller-monitoring repository whose measurement records span the long MongoDB indoor-air recording interruption. The source is separately logged; **physical sensor independence has not been established**. Read-only audits compare the two time streams, scrutinize original sample timestamps and duplicates, and reconstruct provisional temperature/RH and glycol-loop diagnostics. Historical device settings, glycol fluid calibrations and humidifier commands have not been independently certified. A new research-only WAC references these observations in place of the original long-gap inference, without overwriting any accepted source or removing the original model scenarios.
+
+The original measurements, derived hourly datasets, control logs, private scripts, research WACs, figures and experimental ZIP archives are **not public site assets**. This summary does not authorize their redistribution or establish independent physical sensor ground truth. Any more detailed numerical publication requires separate rights and scientific review.
+
 ## Climate provenance and radiation limitation
 
 A database solar_radiation stream was modelled as GHI for WAC reconstruction, but the radiometer's measured plane, orientation, model/serial and calibration have not been confirmed from available sources. Erbs decomposition is a computational transformation, not measured direct/diffuse irradiance.

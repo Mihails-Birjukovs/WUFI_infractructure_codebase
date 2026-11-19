@@ -38,7 +38,7 @@ Daylight gaps require a scientifically justified reconstruction policy. Full-rec
 
 ## Current Campaign 2 research
 
-The [experimental Campaign 2 status](campaign2.md) describes actual-date official CDS ERA5-Land forcing, bounded local correction and provisional indoor-climate scenarios. These are **not a production-admitted WAC** and do not change the historical WAC preparation contract above. Site exposure, solar/rain, wall-clock and unknown interior operation remain separate gates.
+The [experimental Campaign 2 status](campaign2.md) now also describes a separately logged RTU/Warsaw indoor T/RH stream covering the previous MongoDB outage. A newly staged interior WAC preserves the original measured indoor hours, uses direct RTU stream values during the long gap and labels the remaining short-gap estimates and inherited padding. It has been structure-checked but is **RESEARCH-ONLY**, not a production-admitted WAC. The original source WAC and historical I_DRY/I_WET/I_TRANSITION comparators remain immutable. Site exposure, solar/rain, physical sensor identity, time-label interpretation and native WUFI6 import are still separate gates.
 
 ## Citations
 
