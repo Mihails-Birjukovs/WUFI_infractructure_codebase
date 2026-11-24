@@ -1,6 +1,6 @@
 # REF/HEMP Campaign 2 — experimental climate and indoor-model reconstruction
 
-**Research status: experimental; no production WUFI climate boundary has been admitted.** This is a curated methods and validation-status snapshot, not a public dataset, an experimental model release or a certificate that the newly available monitoring stream is the correct physical boundary for the wall models.
+**Research status (updated 24 November 2026): pre-response research assessment completed; physical source admission pending. No production WUFI climate boundary has been admitted.** This is a curated methods and validation-status snapshot, not a public dataset, an experimental model release or a certificate that the newly available monitoring stream is the correct physical boundary for the wall models.
 
 The authoritative [public Campaign 2 preparation and acceptance record](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/blob/WUFI_python_tools/docs/REF_HEMP_C2_PREPARATION_STATUS_2026_11_14.md) is maintained on the separate Python branch. The Python source and this Mathematica-branch website remain intentionally independent.
 
@@ -16,14 +16,14 @@ Observed and reconstructed records are distinguished. The old humid indoor scena
 | Family | Purpose | Current acceptance |
 | --- | --- | --- |
 | **M0** | Refitted exterior-weather/harmonic regression and measured-boundary interpolation | Tested statistical baseline |
-| **M1** | Bounded effective first-order thermal/vapour response | Tested; long-gap forecasts can drift |
-| **M2** | Extra thermal relaxation timescale | Tested in a limited subset; complexity not justified |
+| **M1** | Bounded effective first-order thermal/vapour response | Tested on frozen historical comparisons; future transfer remains unverified |
+| **M2** | Extra thermal relaxation timescale | Thermal-only historical comparison completed; additional complexity requires justification |
 | **M3** | Physical-state Kalman filtering and retrospective RTS smoothing | Weather-only and auxiliary wall-temperature cases tested; covariance not admitted |
-| **M4** | Weather-exogenous SARIMAX | Corrected limited-fold trial converged; complete benchmark pending |
+| **M4** | Weather-exogenous SARIMAX | Corrected masked trial and full historical-gap numerical comparison completed |
 | **M5** | Controlled DMDc dynamic prediction | Stability corrections and transfer limitations remain |
 | **M6** | Dynamic indoor-air/wall lag with latent heating/cooling discrepancy | Tested; conditional long-gap wall benefit, short-gap deterioration and cross-regime drift |
 | **M7** | Vapour concentration, equivalent moisture buffering and latent moisture source | Tested; buffering not identifiable from currently admitted data |
-| **M8** | Sparse-switch effective thermal-source and dynamic wall-assisted retrospective reconstruction | Tested on frozen masked windows; real operation states, uncertainty and physical-source admission did not pass |
+| **M8** | Sparse-switch effective thermal-source and dynamic wall-assisted retrospective reconstruction | Frozen masked and historical-gap assessments completed; numerical convergence does not establish physical source admission |
 
 **Public-software boundary:** The private M0–M8 experimental scripts, source-specific adapters, numerical results and measured sensor histories are **not distributed in this repository**. The published Python WAC and DMD utilities are potential integration components, not the completed Campaign 2 framework.
 
@@ -44,16 +44,18 @@ The same deterministic artificial gaps were imposed on *genuinely measured* indo
 
 The private research audit (November 2026) checked clock alignment, indoor T/RH and vapour-pressure agreement, raw-source coverage, samplewise glycol calorimetry, controller-state logging and a new **research-only** indoor WAC. No private records or unpublished figures are reproduced on this page.
 
-The earlier three indoor climate scenarios were compared *without refitting* to the newly acquired monitoring stream across the original long gap. **I_WET** was the best historical hypothesis of those three for temperature, RH and vapour pressure, but its humidity error was sufficiently large that the actual available sensor stream should be investigated as the primary new climate candidate. M0–M8 remain frozen: only selected archived prediction witnesses have been checked against the new stream, not full new per-model 99-day hindcasts.
+The earlier three indoor climate scenarios were compared *without refitting* to the newly acquired monitoring stream across the original long gap. **I_WET** was the best historical hypothesis of those three for temperature, RH and vapour pressure, but its humidity error was sufficiently large that the actual available sensor stream should be investigated as the primary new climate candidate. A subsequent private research checkpoint completed a full historical-gap assessment of all M0–M8 model families, preserving the original masked benchmarks. Newly recovered measurements were reserved for evaluation rather than refitting the earlier models. The comparison separates pre-gap indoor calibration with historical weather forcing from retrospective smoothing and wall-assisted configurations. Numerical convergence is a separate acceptance gate from physical plausibility. Conditional timing and measurement-offset sensitivity tests do not constitute calibrated instrument confidence intervals or independent seasonal validation.
 
-Glycol-loop calculations are preliminary calorimetric estimates; controller flags are not necessarily physical device feedback. Historical humidifier-state encoding and actual water consumption remain unresolved. The audit preserves the original 26 masked windows, avoids claiming independent folds and makes no material-parameter inference.
+The source review also examined abrupt observed-hour changes, empirical clock alignment, possible inter-logger offsets, repeated daylight-saving hours and climate-file metadata. Source flags and earlier versions are preserved; no unverified bias correction or smoothing is authorized. The glycol property calculation was independently compared with a reference thermophysical backend at sample level; this does not certify delivered room heat or sensor and flow calibration. Static WAC checks distinguish the experimental calculation horizon from artificial file padding and surface pressure from sea-level pressure.
+
+Glycol-loop calculations remain preliminary calorimetric estimates; controller flags are not necessarily physical device feedback. Historical humidifier-state encoding and actual water consumption remain unresolved. The audit preserves the original 26 masked windows, avoids claiming independent folds and makes no material-parameter inference.
 
 ## Outstanding scientific gates
 
 1. Certify whether the original and RTU/Warsaw streams share physical instruments; identify sensor positions, calibration, local-clock/DST and buffered-upload semantics.
 2. Certify actual heating/cooling, humidification, outdoor-air exchange, glycol properties, device feedback and heat-flux records; controller commands do not by themselves establish delivered energy or water.
-3. Complete the full frozen M0–M8 comparison against the newly available data, with equal information sets, source-stream independence limitations and cross-regime validation.
-4. Establish credible instrument and model uncertainties for temperature, vapour pressure, RH and near-saturation events; retain the original model-ladder negative results.
+3. Retain the completed historical-gap assessment and matched-information comparisons; require independent physical-source certification and cross-regime validation before promoting any method.
+4. Establish calibrated instrument and model uncertainties for temperature, vapour pressure, RH and near-saturation events; retain the conditional sensitivity tests and negative results.
 5. Admit exterior forcing physically, including site exposure, solar, wind-driven rain, pressure, WAC time convention and full simulation period.
 6. Test the research-only indoor WAC, exterior boundary and initial states on **disposable WUFI6 project copies**; reconcile native import clock and historical outputs before any material inversion.
 
