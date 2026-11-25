@@ -66,6 +66,10 @@ The proposed observation targets are scalar uncertainty-aware T/RH and T/vapour-
 
 The inner optimization loop should avoid figure export, record source/project hashes and all objective components, and use a robust, restartable single-controller execution ledger. Full unattended optimization is **reserved for a separate future campaign**, subject to acceptance gates.
 
+## Measured-climate recovery update — v0.8.0
+
+The latest private research checkpoint completes provisional study-hour temperature/RH aggregate recovery, retains per-variable source evidence and creates T/RH-only WAC replacement fixtures with structural readback. Physical source qualification and full weather-field admission remain pending. See [the new reconstruction and native admission methods contract](CAMPAIGN2_CLIMATE_RECONSTRUCTION_AND_NATIVE_ADMISSION_v0.8.md) for the approved hierarchical model architecture, causal-versus-retrospective information sets, validation requirements and N0–N6 gates. No production selector, native solver regression or material optimization is claimed.
+
 ## Remaining admission gates
 
 - Complete physical-site and WUFI climate admission (actual site position/exposure, correct pressure, wind-driven rain and WAC time semantics), after the already completed summer original-GRIB de-accumulation check. Certify original-vs-new indoor T/RH sensor identity, source clock, controller and flow properties, then independently qualify both interior/exterior scenarios, initial-state handling and simulation horizon.
