@@ -23,6 +23,7 @@ APPROVED = {
     "python.md",
     "climate.md",
     "campaign2.md",
+    "campaign2-climate-methods.md",
     "modal.md",
     "validation.md",
     "data-provenance.md",
@@ -36,6 +37,7 @@ APPROVED = {
     "assets/inm-horizontal.svg",
     "assets/inm-mark.svg",
     "assets/inm-square-footer.svg",
+    "assets/campaign2-climate-architecture-v08.svg",
 }
 # Original Git blob SHAs from OOC_Particles_Velocimetry_Docs/main.
 APPROVED_INM_BLOBS = {
@@ -43,6 +45,11 @@ APPROVED_INM_BLOBS = {
     "assets/inm-mark.svg": "b3a5154d96b0daf24cd44711fa13980689119287",
     "assets/inm-square-footer.svg": "327ffd7d447e8475e4c8f0e0d0fa68f465be841b",
 }
+# Original, reviewed, schematic-only artwork (no measured data).
+APPROVED_SCHEMATIC_BLOBS = {
+    "assets/campaign2-climate-architecture-v08.svg": "100e75835f409a2998e340e8ac8db8500da686bf",
+}
+APPROVED_SVG_BLOBS = {**APPROVED_INM_BLOBS, **APPROVED_SCHEMATIC_BLOBS}
 BLOCKED_SUFFIXES = {
     ".csv", ".json", ".jsonl", ".7z", ".zip", ".wxf", ".mx",
     ".w6p", ".xml", ".asc", ".wac", ".pdf", ".jpg", ".png",
@@ -68,20 +75,20 @@ def validate() -> None:
             continue
         name = path.relative_to(DOCS).as_posix()
         actual.add(name)
-        is_logo = name in APPROVED_INM_BLOBS
-        if path.suffix.lower() in BLOCKED_SUFFIXES and not is_logo:
+        is_approved_svg = name in APPROVED_SVG_BLOBS
+        if path.suffix.lower() in BLOCKED_SUFFIXES and not is_approved_svg:
             raise ValueError(f"Data/binary artifact forbidden: {name}")
-        if path.suffix.lower() not in {".md", ".css", ".js"} and not is_logo:
+        if path.suffix.lower() not in {".md", ".css", ".js"} and not is_approved_svg:
             raise ValueError(f"Unreviewed extension: {name}")
         payload = path.read_bytes()
         if len(payload) > 100_000:
             raise ValueError(f"Oversized site asset: {name}")
-        if is_logo:
+        if is_approved_svg:
             git_blob = hashlib.sha1(
                 f"blob {len(payload)}\0".encode("ascii") + payload
             ).hexdigest()
-            if git_blob != APPROVED_INM_BLOBS[name]:
-                raise ValueError(f"Modified/unapproved institutional artwork: {name}")
+            if git_blob != APPROVED_SVG_BLOBS[name]:
+                raise ValueError(f"Modified/unapproved pinned SVG artwork: {name}")
         raw = payload.decode("utf-8")
         for pattern in PRIVATE_PATTERNS:
             if pattern.search(raw):
@@ -100,7 +107,7 @@ def validate() -> None:
             "Site files differ from approved publication manifest: "
             f"added={sorted(actual - APPROVED)} missing={sorted(APPROVED - actual)}"
         )
-    print(f"PASS: exact {len(APPROVED)} public files, 3 pinned INM SVGs")
+    print(f"PASS: exact {len(APPROVED)} public files, 3 pinned INM SVGs and 1 pinned schematic")
 
 
 if __name__ == "__main__":
