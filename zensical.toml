@@ -24,6 +24,7 @@ nav = [
   { "Processing methods" = [
     "climate.md",
     "campaign2.md",
+    "campaign2-climate-methods.md",
     "modal.md",
   ] },
   { "Validation" = "validation.md" },

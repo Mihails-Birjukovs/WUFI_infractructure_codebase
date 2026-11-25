@@ -38,7 +38,7 @@ The same deterministic artificial gaps were imposed on *genuinely measured* indo
 - **Long-gap uncertainty is not calibrated:** noise tuning on independent shorter windows did not generalize to the longer blocked intervals.
 - **Adversarial withholding checks passed:** deliberately corrupting hidden indoor labels left the tested model predictions unchanged, establishing a limited numerical leakage check, not accuracy during the actual historical outage.
 
-**New evidence since the original M0–M8 experiments:** the separately logged RTU/Warsaw stream contains indoor T/RH and system telemetry throughout the original 2,374-hour interruption. Empirical cross-stream agreement is strong and a samplewise/time-weighted raw-data audit confirms dense hourly coverage. This is not a certification that the two streams use distinct physical sensors or that their measurements are identical to the WUFI model boundary. The gap can now be evaluated with previously unavailable monitoring values; any derived climate remains provisional pending hardware, timing and model acceptance.
+**New evidence since the original M0–M8 experiments:** the separately logged RTU/Warsaw stream contains indoor T/RH and system telemetry throughout the original 2,374-hour interruption. Empirical cross-stream agreement is strong and a samplewise/time-weighted raw-data audit confirms dense hourly coverage. Subsequent private source qualification supports distinct indoor instrumentation, but does not establish boundary representativeness or installed measurement uncertainty. The gap can now be evaluated with previously unavailable monitoring values; any derived climate remains provisional pending hardware, timing and model acceptance.
 
 ## New monitoring assimilation and frozen-scenario external checks
 
@@ -50,9 +50,15 @@ The source review also examined abrupt observed-hour changes, empirical clock al
 
 Glycol-loop calculations remain preliminary calorimetric estimates; controller flags are not necessarily physical device feedback. Historical humidifier-state encoding and actual water consumption remain unresolved. The audit preserves the original 26 masked windows, avoids claiming independent folds and makes no material-parameter inference.
 
+## Measured-climate recovery and reusable reconstruction architecture
+
+The latest private research checkpoint has reconciled the remaining study-hour T/RH records and generated separate, structurally verified **research-only T/RH replacement fixtures**. The remaining weather variables, site exposure, time conventions and native WUFI acceptance are not yet admitted. Existing models and failed cases remain frozen. The leading exterior model fallback is bounded ERA–Kalman; the preferred indoor retrospective reference is M3, with M1 as one-sided comparator and M7/M4 as complementary methods. A causal M3 filter-only variant is a proposed extension, distinct from the current RTS smoother.
+
+Read the [full public methods and native admission report](campaign2-climate-methods.md), including the source-aware decision schematic, model ladder, benchmark requirements and N0–N6 gates. Detailed measured plots and numerical data are held in private research storage.
+
 ## Outstanding scientific gates
 
-1. Certify whether the original and RTU/Warsaw streams share physical instruments; identify sensor positions, calibration, local-clock/DST and buffered-upload semantics.
+1. Finish instrument representativeness, installed uncertainty, outdoor exposure, local-clock/DST and buffered-upload qualification.
 2. Certify actual heating/cooling, humidification, outdoor-air exchange, glycol properties, device feedback and heat-flux records; controller commands do not by themselves establish delivered energy or water.
 3. Retain the completed historical-gap assessment and matched-information comparisons; require independent physical-source certification and cross-regime validation before promoting any method.
 4. Establish calibrated instrument and model uncertainties for temperature, vapour pressure, RH and near-saturation events; retain the conditional sensitivity tests and negative results.
