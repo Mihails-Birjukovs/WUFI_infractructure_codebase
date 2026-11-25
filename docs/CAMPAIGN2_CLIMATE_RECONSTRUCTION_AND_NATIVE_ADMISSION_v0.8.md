@@ -2,7 +2,7 @@
 
 **Methods report v0.8.0 — 25 November 2026.** This report describes the approved research architecture and decision criteria, not a released weather dataset or production WUFI climate. Experimental measurements, source-sensitive numerical results and unpublished charts remain in the authorized private research workspace.
 
-![Source-aware reconstruction decision diagram](https://github.com/Mihails-Birjukovs/WUFI_infractructure_codebase/blob/docs/campaign2-measured-recovery-methods-v08/site_docs/assets/campaign2-climate-architecture-v08.svg?raw=true)
+![Source-aware reconstruction decision diagram](assets/campaign2-climate-architecture-v08.svg)
 
 *Figure 1. Proposed method-selection and climate-admission architecture. Schematic only; not experimental data or a performance plot.*
 
